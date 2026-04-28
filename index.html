@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Let's Eat</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #c7a67c;
+    color: #2b1b12;
+}
+
+/* GENERAL */
+section {
+    padding: 60px 20px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    background: #c7a67c;
+}
+
+.hero h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+}
+
+.quote {
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* RECIPE LAYOUT */
+.recipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.recipe img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.recipe-content {
+    flex: 1;
+}
+
+.ingredients, .prep {
+    margin-top: 20px;
+}
+
+/* WAVY BACKGROUND */
+.wave {
+    background: linear-gradient(
+        to bottom,
+        #c7a67c 50%,
+        #6b4a35 50%
+    );
+    color: #fff;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+}
+
+.review {
+    font-size: 40px;
+    margin-top: 30px;
+}
+
+.stars {
+    font-size: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p>
+        <h1>LET'S EAT!</h1>
+    </div>
+</section>
+
+<!-- SWEET CHICKEN -->
+<section>
+    <div class="container recipe">
+        <img src="https://source.unsplash.com/300x300/?chicken" alt="">
+        <div class="recipe-content">
+            <h2>Sweet Chicken Recipe</h2>
+
+            <div class="ingredients">
+                <h3>Ingredients</h3>
+                <p>
+                ¼ cup honey<br>
+                2 tbsp soy sauce<br>
+                ½ tsp red pepper flakes<br>
+                1½ tbsp olive oil<br>
+                2 boneless chicken breasts
+                </p>
+            </div>
+
+            <div class="prep">
+                <h3>Prep</h3>
+                <p>
+                Mix ingredients. Cook chicken until browned. Add sauce and cook until thickened.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NOODLES -->
+<section class="wave">
+    <div class="container recipe">
+        <img src="https://source.unsplash.com/300x300/?noodles" alt="">
+        <div class="recipe-content">
+            <h2>Noodle Recipe</h2>
+
+            <div class="ingredients">
+                <h3>Ingredients</h3>
+                <p>
+                1 lb steak<br>
+                2 tbsp butter<br>
+                1 onion<br>
+                1 cup beef stock<br>
+                4 cups noodles
+                </p>
+            </div>
+
+            <div class="prep">
+                <h3>Prep</h3>
+                <p>
+                Cook steak and onion. Add stock and simmer. Boil noodles separately and mix.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COOKIES -->
+<section>
+    <div class="container recipe">
+        <img src="https://source.unsplash.com/300x300/?cookies" alt="">
+        <div class="recipe-content">
+            <h2>Chocolate Chip Cookies</h2>
+
+            <div class="ingredients">
+                <h3>Ingredients</h3>
+                <p>
+                8 tbsp butter<br>
+                1¾ cups flour<br>
+                1 cup chocolate chips<br>
+                1 egg<br>
+                ½ tsp baking soda
+                </p>
+            </div>
+
+            <div class="prep">
+                <h3>Prep</h3>
+                <p>
+                Mix ingredients. Form dough balls. Bake at 350°F for 10–12 minutes.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer wave">
+    <div class="container">
+        <h2>THANK YOU</h2>
+        <p>for visiting our website</p>
+
+        <div class="review">REVIEW</div>
+        <div class="stars">☆ ☆ ☆ ☆ ☆</div>
+
+        <p style="margin-top:30px;">lets eat@email.com</p>
+    </div>
+</section>
+
+</body>
+</html>
