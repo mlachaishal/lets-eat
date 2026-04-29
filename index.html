@@ -434,10 +434,10 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
             </div>
         </section>
 
-        <!-- NOODLES -->
+        <!-- NOODLES - with local image "NOodle n.jpg" -->
         <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory bay leaves thyme">
             <div class="container recipe">
-                <img src="https://source.unsplash.com/300x300/?beef+noodles+bowl" alt="Beef noodle bowl" onerror="this.src='https://source.unsplash.com/300x300/?noodles'" id="noodleImg" style="cursor: pointer;">
+                <img src="NOodle n.jpg" alt="Hearty Beef Noodles" style="cursor: pointer; object-fit: cover;" onerror="this.src='https://source.unsplash.com/300x300/?beef+noodles+bowl'">
                 <div class="recipe-content">
                     <h2>Noodle Recipe</h2>
                     <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion diced<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme</p></div>
@@ -516,7 +516,7 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     <div class="modal-content">
         <div class="modal-header"><h2><i class="fas fa-utensil-spoon"></i> Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div>
         <div class="modal-body">
-            <img src="https://source.unsplash.com/800x400/?beef+noodles+stew" alt="Beef Noodles" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?noodles'">
+            <img src="NOodle n.jpg" alt="Hearty Beef Noodles" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?beef+noodles+stew'">
             <div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme, salt & pepper</p></div>
             <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Sear steak</span> in batches until browned, about 5 minutes. Transfer to plate.</li><li><span class="step-highlight">Melt butter</span> and sauté onion until softened, 5-10 minutes.</li><li><span class="step-highlight">Add steak back</span> with beef stock, bay leaves, thyme, salt, pepper. Bring to boil, then simmer covered 50 minutes.</li><li><span class="step-highlight">Stir in peas and cornstarch slurry</span>; cook uncovered until thickened, about 10 minutes. Remove bay leaves.</li><li><span class="step-highlight">Boil egg noodles</span> in salted water until al dente (about 5 minutes); drain.</li><li><span class="step-highlight">Serve beef mixture over noodles</span> with extra gravy.</li></ol></div>
             <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes steak incredibly tender. For deeper flavor, deglaze with red wine before adding stock.</div>
@@ -571,12 +571,15 @@ document.querySelectorAll('.open-recipe-btn').forEach(btn => {
     });
 });
 
-// Clickable images - for Sweet Chicken, use the local image
+// Clickable images
 const sweetChickenLocalImg = document.querySelector('#recipe-sweet-chicken img');
 if (sweetChickenLocalImg) {
     sweetChickenLocalImg.addEventListener('click', () => openModal('sweetChickenModal'));
 }
-document.getElementById('noodleImg')?.addEventListener('click', () => openModal('noodleModal'));
+const noodleLocalImg = document.querySelector('#recipe-noodles img');
+if (noodleLocalImg) {
+    noodleLocalImg.addEventListener('click', () => openModal('noodleModal'));
+}
 document.getElementById('cookieImg')?.addEventListener('click', () => openModal('cookieModal'));
 
 // Close modal buttons
