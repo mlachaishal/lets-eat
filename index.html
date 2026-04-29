@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Let's Eat | Recipes & Meal Prep</title>
+<title>Let's Eat | Sweet Chicken Recipe</title>
 <!-- Font Awesome 6 (free icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
@@ -50,6 +50,7 @@ body {
     letter-spacing: 2px;
     color: #f7e3b2;
     font-family: 'Georgia', serif;
+    cursor: pointer;
 }
 .brand i {
     font-size: 1.8rem;
@@ -159,8 +160,6 @@ body {
     position: relative;
 }
 .icon-btn:hover { background: #d6a05e; color: #2b1b12; }
-.icon-btn.active-heart { color: #ff6b6b; background: rgba(255, 107, 107, 0.2); }
-.icon-btn.active-heart:hover { background: #ff6b6b; color: white; }
 .save-badge {
     position: absolute;
     top: -5px;
@@ -193,38 +192,120 @@ body {
 .recipe-save-btn.saved { background: #b5651e; }
 .recipe-save-btn.saved i { color: #ffcd7e; }
 
-/* Saved Recipes Section */
-.saved-section {
-    background: #3d2a1b;
-    border-radius: 32px;
-    padding: 30px;
-    margin: 20px 0;
+/* MODAL / POPUP PAGE FOR SWEET CHICKEN RECIPE */
+.recipe-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px 20px;
 }
-.saved-section h3 { color: #ffefcf; margin-bottom: 20px; }
-.saved-recipes-grid { display: flex; flex-wrap: wrap; gap: 15px; }
-.saved-recipe-chip {
+.recipe-modal.active {
+    display: block;
+}
+.modal-content {
+    max-width: 900px;
+    margin: 0 auto;
     background: #fdf3e2;
-    padding: 10px 20px;
-    border-radius: 60px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: #2b1b12;
-    font-weight: 500;
-    cursor: pointer;
+    border-radius: 48px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: modalFadeIn 0.3s ease;
 }
-.saved-recipe-chip:hover { background: #e9bc7d; }
-.remove-saved {
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.modal-header {
+    background: #2b1b12;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #e9bc7d;
+}
+.modal-header h2 {
+    color: #f7e3b2;
+    margin: 0;
+    font-size: 1.8rem;
+}
+.close-modal {
     background: none;
     border: none;
-    color: #b5651e;
+    color: #e9bc7d;
+    font-size: 2rem;
     cursor: pointer;
-    margin-left: 8px;
+    transition: transform 0.2s;
 }
-.remove-saved:hover { color: #8b3c1c; }
-.empty-saved { color: #c7a67c; font-style: italic; padding: 15px; text-align: center; }
+.close-modal:hover {
+    transform: scale(1.1);
+    color: #ffcd7e;
+}
+.modal-body {
+    padding: 30px;
+}
+.modal-recipe-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+.modal-ingredients, .modal-steps {
+    background: #fffaf0;
+    padding: 20px;
+    border-radius: 24px;
+    margin-top: 20px;
+    box-shadow: inset 0 0 0 1px #fff6ea, 0 4px 8px rgba(0,0,0,0.05);
+}
+.modal-ingredients h3, .modal-steps h3 {
+    border-left: 5px solid #b5651e;
+    padding-left: 12px;
+    margin-bottom: 15px;
+    color: #4b2e1a;
+}
+.modal-steps ol {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+.modal-steps li {
+    margin-bottom: 12px;
+    color: #2b1b12;
+}
+.modal-note {
+    background: #e9bc7d20;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 20px;
+    border-left: 4px solid #b5651e;
+    font-style: italic;
+}
+.open-recipe-btn {
+    background: #2b1b12;
+    color: #f7e3b2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.open-recipe-btn:hover {
+    background: #b5651e;
+    transform: scale(1.02);
+}
 
-/* Recipe Layout */
+/* Recipe Layout for Home Page */
 section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .container { max-width: 1100px; margin: auto; }
@@ -233,7 +314,8 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .quote { font-style: italic; margin-bottom: 30px; font-size: 1.2rem; color: #3a2a1c; }
 
 .recipe { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
-.recipe img { width: 280px; border-radius: 24px; box-shadow: 8px 12px 18px rgba(0,0,0,0.2); object-fit: cover; height: 260px; border: 2px solid #f3deba; }
+.recipe img { width: 280px; border-radius: 24px; box-shadow: 8px 12px 18px rgba(0,0,0,0.2); object-fit: cover; height: 260px; border: 2px solid #f3deba; cursor: pointer; transition: transform 0.2s; }
+.recipe img:hover { transform: scale(1.02); }
 .recipe-content { flex: 1; }
 .ingredients, .detailed-steps {
     margin-top: 20px;
@@ -287,25 +369,9 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .checklist-item { display: flex; align-items: center; gap: 12px; background: #fcf3e6; padding: 10px 16px; border-radius: 50px; cursor: pointer; }
 .checklist-item span { color: #000000; font-weight: 500; }
 .progress-text { text-align: center; margin-top: 24px; font-weight: bold; background: #e9bc7d40; padding: 12px; border-radius: 60px; color: #000000; }
-
-/* Pro Tip Box - BLACK TEXT */
-.pro-tip-box {
-    background: #fff2e2;
-    border-radius: 48px;
-    padding: 24px;
-    margin-top: 35px;
-    text-align: center;
-    color: #000000;
-}
-.pro-tip-box i {
-    font-size: 2rem;
-    color: #b5651e;
-}
-.pro-tip-box p {
-    margin-top: 12px;
-    color: #000000;
-    font-weight: 500;
-}
+.pro-tip-box { background: #fff2e2; border-radius: 48px; padding: 24px; margin-top: 35px; text-align: center; color: #000000; }
+.pro-tip-box i { font-size: 2rem; color: #b5651e; }
+.pro-tip-box p { margin-top: 12px; color: #000000; font-weight: 500; }
 
 /* Review Stars */
 .review-container { margin: 30px auto; text-align: center; background: rgba(43,27,18,0.5); padding: 25px; border-radius: 60px; }
@@ -321,6 +387,8 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     .header-container { flex-direction: column; align-items: stretch; }
     .hero h1 { font-size: 42px; }
     .rating-stars i { font-size: 38px; }
+    .modal-body { padding: 20px; }
+    .modal-recipe-img { height: 200px; }
 }
 </style>
 </head>
@@ -328,7 +396,10 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
 <header class="main-header">
     <div class="header-container">
-        <div class="brand"><i class="fas fa-utensils"></i><span>Let's Eat</span></div>
+        <div class="brand" id="homeBtn">
+            <i class="fas fa-utensils"></i>
+            <span>Let's Eat</span>
+        </div>
         <div class="search-wrapper">
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
@@ -338,200 +409,225 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
             </div>
         </div>
         <div class="header-actions">
-            <button class="icon-btn" id="savedRecipesBtn"><i class="fas fa-bookmark"></i><span class="save-badge" id="savedCountBadge">0</span></button>
+            <button class="icon-btn" id="savedPageBtn"><i class="fas fa-bookmark"></i><span class="save-badge" id="savedCountBadge">0</span></button>
             <button class="icon-btn" id="heartBtn"><i class="far fa-heart"></i></button>
         </div>
     </div>
 </header>
 
-<section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
+<!-- MAIN CONTENT (Home Page) -->
+<div id="mainContent">
+    <section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
 
-<div id="recipesWrapper">
-    <!-- SWEET CHICKEN - FULL DETAILED PREP -->
-    <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey soy sauce savory main dish">
-        <div class="container recipe">
-            <img src="https://source.unsplash.com/300x300/?honey+chicken+breast" alt="Sweet chicken skillet" onerror="this.src='https://source.unsplash.com/300x300/?chicken'">
-            <div class="recipe-content">
-                <h2>Sweet Chicken Recipe</h2>
-                <div class="ingredients">
-                    <h3><i class="fas fa-clipboard-list"></i> Ingredients</h3>
-                    <p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (cut into bite-sized pieces)</p>
+    <div id="recipesWrapper">
+        <!-- SWEET CHICKEN - with clickable "View Full Recipe" button -->
+        <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey soy sauce savory main dish">
+            <div class="container recipe">
+                <img src="https://source.unsplash.com/300x300/?honey+chicken+breast" alt="Sweet chicken skillet" onerror="this.src='https://source.unsplash.com/300x300/?chicken'" id="sweetChickenImg" style="cursor: pointer;">
+                <div class="recipe-content">
+                    <h2>Sweet Chicken Recipe</h2>
+                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (bite-sized)</p></div>
+                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Gather ingredients</span></li><li><span class="step-highlight">Whisk honey, soy, pepper flakes</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li><li><span class="step-highlight">Serve hot</span></li></ol><div class="note-box"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Click "View Full Recipe" for detailed step-by-step instructions!</div></div>
+                    <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                    <button class="open-recipe-btn" id="openSweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
-                <div class="detailed-steps">
-                    <h3><i class="fas fa-cooking"></i> Step-by-Step Preparation</h3>
-                    <ol>
-                        <li><span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts.</li>
-                        <li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside.</li>
-                        <li><span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).</li>
-                        <li><span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).</li>
-                        <li><span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Enjoy your homemade sweet chicken!</li>
-                    </ol>
-                    <div class="note-box"><i class="fas fa-lightbulb"></i> <strong>Chef's Tip:</strong> For extra flavor, marinate chicken in soy sauce for 15 minutes before cooking.</div>
-                </div>
-                <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
             </div>
+        </section>
+
+        <!-- NOODLES -->
+        <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory">
+            <div class="container recipe">
+                <img src="https://source.unsplash.com/300x300/?beef+noodles+bowl" alt="Beef noodle bowl" onerror="this.src='https://source.unsplash.com/300x300/?noodles'">
+                <div class="recipe-content">
+                    <h2>Noodle Recipe</h2>
+                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion diced<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme</p></div>
+                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Sear steak</span></li><li><span class="step-highlight">Sauté onion</span></li><li><span class="step-highlight">Simmer 50 min</span></li><li><span class="step-highlight">Thicken sauce</span></li><li><span class="step-highlight">Serve over noodles</span></li></ol></div>
+                    <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- COOKIES -->
+        <section id="recipe-cookies" class="recipe-card" data-recipe-name="Chocolate Chip Cookies" data-keywords="cookies dessert chocolate butter">
+            <div class="container recipe">
+                <img src="https://source.unsplash.com/300x300/?chocolate+cookies+fresh" alt="Fresh cookies" onerror="this.src='https://source.unsplash.com/300x300/?cookies'">
+                <div class="recipe-content">
+                    <h2>Chocolate Chip Cookies</h2>
+                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>8 tbsp butter (browned)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
+                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Brown butter</span></li><li><span class="step-highlight">Mix with sugars</span></li><li><span class="step-highlight">Add egg and vanilla</span></li><li><span class="step-highlight">Fold in flour and chips</span></li><li><span class="step-highlight">Bake at 350°F</span></li></ol></div>
+                    <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Meal Prep Section -->
+    <section class="meal-prep-section">
+        <div class="container">
+            <h2><i class="fas fa-calendar-week"></i> Ultimate Meal Prep Guide</h2>
+            <div class="prep-grid">
+                <div class="prep-card"><i class="fas fa-kitchen-set"></i><h3>Weekly Strategy</h3><ul><li>Choose 3-4 recipes</li><li>Sunday batch cooking</li></ul></div>
+                <div class="prep-card"><i class="fas fa-box-open"></i><h3>Storage</h3><ul><li>Glass airtight containers</li><li>Label with dates</li></ul></div>
+                <div class="prep-card"><i class="fas fa-temperature-low"></i><h3>Freezer Tips</h3><ul><li>Soups freeze well</li><li>Flash-freeze dough</li></ul></div>
+            </div>
+            <div class="checklist" id="mealPrepChecklist"><h3>Sunday Prep Checklist</h3><div class="checklist-grid"><label class="checklist-item"><i class="far fa-square"></i> <span>Chop vegetables</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Cook grains</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Marinate proteins</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Portion snacks</span></label></div><div class="progress-text" id="prepProgressMsg">✅ 0 / 4 tasks completed</div></div>
+            <div class="pro-tip-box"><i class="fas fa-lightbulb"></i><p><strong>Pro Tip:</strong> The beef noodle recipe is perfect for meal prep — the slow-simmered steak becomes even more flavorful the next day!</p></div>
         </div>
     </section>
 
-    <!-- NOODLE RECIPE - FULL DETAILED PREP -->
-    <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory bay leaves thyme">
-        <div class="container recipe">
-            <img src="https://source.unsplash.com/300x300/?beef+noodles+bowl" alt="Beef noodle bowl" onerror="this.src='https://source.unsplash.com/300x300/?noodles'">
-            <div class="recipe-content">
-                <h2>Noodle Recipe</h2>
-                <div class="ingredients">
-                    <h3><i class="fas fa-clipboard-list"></i> Ingredients</h3>
-                    <p>1 lb steak (cubed into 1-inch pieces)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch mixed with 2 tbsp water (slurry)<br>2 bay leaves<br>1 tsp dried thyme<br>Salt and pepper to taste</p>
+    <!-- Footer -->
+    <section class="footer wave-bg">
+        <div class="container">
+            <h2>THANK YOU</h2>
+            <p>for visiting our website</p>
+            <div class="review-container">
+                <div class="review-label">🍽️ Rate Your Experience 🍽️</div>
+                <div class="rating-stars" id="clickableStars">
+                    <i class="far fa-star" data-rating="1"></i><i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i><i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
                 </div>
-                <div class="detailed-steps">
-                    <h3><i class="fas fa-cooking"></i> Step-by-Step Preparation</h3>
-                    <ol>
-                        <li><span class="step-highlight">Heat a skillet over medium-high heat</span>; cook steak in batches (to avoid overcrowding) until seared and browned on all sides, about 5 minutes. Transfer seared steak to a plate.</li>
-                        <li><span class="step-highlight">Melt butter</span> in the same skillet over medium heat and sauté onion until softened, 5 to 10 minutes.</li>
-                        <li><span class="step-highlight">Add steak back to the skillet</span> with the onion. Pour in beef stock and season with bay leaves, thyme, salt, and pepper.</li>
-                        <li><span class="step-highlight">Bring to a boil</span>; then reduce heat to low, cover, and simmer until steak is tender, about 50 minutes.</li>
-                        <li><span class="step-highlight">Stir peas and cornstarch slurry</span> into the steak mixture; cook uncovered until the liquid thickens, about 10 minutes. Remove bay leaves.</li>
-                        <li>Meanwhile, <span class="step-highlight">bring a large pot of lightly salted water to a boil</span>. Cook egg noodles in the boiling water, stirring occasionally, until al dente (about 5 minutes); drain well.</li>
-                        <li><span class="step-highlight">Serve beef mixture over noodles</span> in deep bowls, spooning extra gravy on top. Garnish with fresh herbs if desired.</li>
-                    </ol>
-                    <div class="note-box"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes the steak incredibly tender. For deeper flavor, deglaze the skillet with a splash of red wine before adding stock.</div>
-                </div>
-                <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                <div class="rating-feedback" id="starFeedback">⭐ Click a star to leave your rating! ⭐</div>
+                <button class="reset-rating" id="resetRatingsBtn">↻ Reset My Rating</button>
             </div>
-        </div>
-    </section>
-
-    <!-- CHOCOLATE CHIP COOKIES - FULL DETAILED BROWN BUTTER METHOD -->
-    <section id="recipe-cookies" class="recipe-card" data-recipe-name="Chocolate Chip Cookies" data-keywords="cookies dessert sweet chocolate butter baking brown butter">
-        <div class="container recipe">
-            <img src="https://source.unsplash.com/300x300/?chocolate+cookies+fresh" alt="Fresh baked cookies" onerror="this.src='https://source.unsplash.com/300x300/?cookies'">
-            <div class="recipe-content">
-                <h2>Chocolate Chip Cookies</h2>
-                <div class="ingredients">
-                    <h3><i class="fas fa-clipboard-list"></i> Ingredients</h3>
-                    <p>8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups all-purpose flour<br>1 cup chocolate chips<br>Sea salt for sprinkling</p>
-                </div>
-                <div class="detailed-steps">
-                    <h3><i class="fas fa-cooking"></i> Step-by-Step Brown Butter Cookie Method</h3>
-                    <ol>
-                        <li><span class="step-highlight">Preheat the oven to 350ºF (175°C)</span>. Line a baking sheet with parchment paper.</li>
-                        <li><span class="step-highlight">In a pot, melt and carefully brown the butter</span> over medium heat. Stir continuously until it turns amber and smells nutty (about 3-5 minutes). Remove from heat.</li>
-                        <li><span class="step-highlight">Let brown butter cool until warm to the touch</span> (about 5-10 minutes). Then add the white and brown sugar, mixing until fully incorporated.</li>
-                        <li><span class="step-highlight">Add 1 egg at room temperature</span> and mix again until smooth and glossy.</li>
-                        <li><span class="step-highlight">Add the vanilla and salt</span> onto the mixture. Then add the baking soda into the pool of vanilla before mixing it all well.</li>
-                        <li><span class="step-highlight">Once the cookie mixture has a ribbon-like consistency</span>, add the flour and chocolate chips, then mix gently until just combined.</li>
-                        <li><span class="step-highlight">Once there are no more specks of flour</span> around the batter, scoop into round dough balls (about 1.5 tbsp each) on the parchment-lined baking sheet, spacing 2 inches apart.</li>
-                        <li><span class="step-highlight">Sprinkle with sea salt</span> and bake for 10-12 minutes, until edges are golden brown but centers are still soft.</li>
-                        <li><span class="step-highlight">Let sit and cool for 8-10 minutes</span> on the baking sheet (they will continue to set). Then transfer to a wire rack and enjoy!</li>
-                    </ol>
-                    <div class="note-box"><i class="fas fa-lightbulb"></i> <strong>Baker's Tip:</strong> Brown butter adds deep caramel notes. For extra chewy cookies, chill the dough for 30 minutes before baking.</div>
-                </div>
-                <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
-            </div>
+            <p>lets eat@email.com</p>
         </div>
     </section>
 </div>
 
-<!-- Saved Recipes Section -->
-<div class="container" id="savedRecipesContainer" style="display: none;">
-    <div class="saved-section">
-        <h3><i class="fas fa-bookmark"></i> Your Saved Recipes</h3>
-        <div id="savedRecipesList" class="saved-recipes-grid"></div>
+<!-- MODAL / POPUP PAGE FOR SWEET CHICKEN RECIPE (Clickable Full Page) -->
+<div id="sweetChickenModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <img src="https://source.unsplash.com/800x400/?honey+chicken" alt="Sweet Chicken" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chicken'">
+            
+            <div class="modal-ingredients">
+                <h3><i class="fas fa-clipboard-list"></i> Full Ingredients List</h3>
+                <p>
+                    <strong>¼ cup honey</strong><br>
+                    <strong>2 tbsp soy sauce</strong><br>
+                    <strong>½ tsp red pepper flakes</strong><br>
+                    <strong>1½ tbsp olive oil</strong><br>
+                    <strong>2 boneless chicken breasts</strong> (cut into bite-sized pieces)
+                </p>
+            </div>
+            
+            <div class="modal-steps">
+                <h3><i class="fas fa-cooking"></i> Detailed Step-by-Step Instructions</h3>
+                <ol>
+                    <li><span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts by cutting them into bite-sized pieces.</li>
+                    <li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside for later.</li>
+                    <li><span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add the chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).</li>
+                    <li><span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until the chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).</li>
+                    <li><span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Garnish with sesame seeds or green onions if desired.</li>
+                    <li><span class="step-highlight">Enjoy</span> your homemade sweet chicken! Leftovers can be stored in an airtight container in the refrigerator for up to 3 days.</li>
+                </ol>
+            </div>
+            
+            <div class="modal-note">
+                <i class="fas fa-lightbulb"></i> <strong>Chef's Tip:</strong> For extra flavor, marinate the chicken in soy sauce for 15 minutes before cooking. You can also add a teaspoon of fresh ginger or garlic for more depth!
+            </div>
+            
+            <div style="margin-top: 25px; text-align: center;">
+                <button class="recipe-save-btn" id="modalSaveBtn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button>
+            </div>
+        </div>
     </div>
 </div>
-
-<!-- Meal Prep Section -->
-<section class="meal-prep-section">
-    <div class="container">
-        <h2><i class="fas fa-calendar-week"></i> Ultimate Meal Prep Guide</h2>
-        <p style="margin-bottom: 30px;">Plan, prep, and store delicious meals for the week ahead.</p>
-        <div class="prep-grid">
-            <div class="prep-card"><i class="fas fa-kitchen-set"></i><h3>Weekly Strategy</h3><ul><li>Choose 3-4 recipes with overlapping ingredients</li><li>Set aside 2 hours on Sunday for batch cooking</li><li>Pre-chop veggies & marinate proteins in advance</li><li>Cook grains in large batches</li></ul></div>
-            <div class="prep-card"><i class="fas fa-box-open"></i><h3>Storage & Containers</h3><ul><li>Glass containers with airtight lids</li><li>Separate wet & dry ingredients</li><li>Use portion-sized containers</li><li>Label everything with name & date</li></ul></div>
-            <div class="prep-card"><i class="fas fa-temperature-low"></i><h3>Freezer-Friendly Tips</h3><ul><li>Soups, stews, and curries freeze beautifully</li><li>Flash-freeze meatballs, cookie dough</li><li>Use silicone bags for flat freezing</li><li>Always cool food completely before freezing</li></ul></div>
-        </div>
-        <div class="week-plan"><h3>Sample 5-Day Meal Prep Plan</h3><div class="week-grid"><div class="day-card"><strong>Monday</strong><p>Sweet Chicken + roasted broccoli + quinoa</p></div><div class="day-card"><strong>Tuesday</strong><p>Beef noodles + stir-fry veggies</p></div><div class="day-card"><strong>Wednesday</strong><p>Leftover chicken wrap with greens</p></div><div class="day-card"><strong>Thursday</strong><p>Noodle bowl + sesame dressing</p></div><div class="day-card"><strong>Friday</strong><p>Chocolate chip cookie (treat!) & fresh salad</p></div></div></div>
-        <div class="storage-tips"><span class="tip-item"><i class="fas fa-thermometer-half"></i> Fridge: 3-5 days</span><span class="tip-item"><i class="fas fa-snowflake"></i> Freezer: 2-3 months</span><span class="tip-item"><i class="fas fa-leaf"></i> Reheat to 165°F</span><span class="tip-item"><i class="fas fa-clock"></i> Prep day: Sunday</span></div>
-        <div class="checklist" id="mealPrepChecklist"><h3><i class="fas fa-check-circle"></i> Sunday Prep Checklist</h3><div class="checklist-grid"><label class="checklist-item"><i class="far fa-square"></i> <span>Wash & chop all vegetables</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Cook rice / quinoa / pasta</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Marinate chicken or beef</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Portion snacks (nuts, yogurt, fruits)</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Make dressing/sauces for the week</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Hard-boil eggs for quick protein</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Label containers with dates</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Arrange fridge shelf for easy grab</span></label></div><div class="progress-text" id="prepProgressMsg">✅ 0 / 8 tasks completed — click each task to track your prep!</div></div>
-        
-        <!-- PRO TIP BOX - BLACK TEXT -->
-        <div class="pro-tip-box">
-            <i class="fas fa-lightbulb"></i>
-            <p><strong>Pro Tip:</strong> The beef noodle recipe is perfect for meal prep — the slow-simmered steak becomes even more flavorful the next day! Double the batch and freeze portions for up to 3 months. Brown butter cookie dough also freezes beautifully.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Footer with Rating -->
-<section class="footer wave-bg">
-    <div class="container">
-        <h2>THANK YOU</h2>
-        <p>for visiting our website</p>
-        <div class="review-container">
-            <div class="review-label">🍽️ Rate Your Experience 🍽️</div>
-            <div class="rating-stars" id="clickableStars">
-                <i class="far fa-star" data-rating="1"></i>
-                <i class="far fa-star" data-rating="2"></i>
-                <i class="far fa-star" data-rating="3"></i>
-                <i class="far fa-star" data-rating="4"></i>
-                <i class="far fa-star" data-rating="5"></i>
-            </div>
-            <div class="rating-feedback" id="starFeedback">⭐ Click a star to leave your rating! ⭐</div>
-            <button class="reset-rating" id="resetRatingsBtn">↻ Reset My Rating</button>
-        </div>
-        <p style="margin-top:25px;">lets eat@email.com</p>
-    </div>
-</section>
 
 <div id="emptySearchMessage" style="display: none;" class="no-recipes-message"><i class="fas fa-search-minus"></i> No recipes match your search.</div>
 
 <script>
-// ========== SAVE RECIPE FUNCTIONALITY ==========
-(function() {
-    let savedRecipes = JSON.parse(localStorage.getItem('letsEat_savedRecipes')) || [];
-    function updateSavedUI() {
-        document.getElementById('savedCountBadge').innerText = savedRecipes.length;
-        document.querySelectorAll('.recipe-save-btn').forEach(btn => {
-            const recipeId = btn.getAttribute('data-recipe');
-            if (savedRecipes.includes(recipeId)) {
-                btn.innerHTML = '<i class="fas fa-check-circle"></i> Saved!';
-                btn.classList.add('saved');
-            } else {
-                btn.innerHTML = '<i class="far fa-bookmark"></i> Save Recipe';
-                btn.classList.remove('saved');
-            }
-        });
-        const savedContainer = document.getElementById('savedRecipesContainer');
-        const savedListDiv = document.getElementById('savedRecipesList');
-        if (savedRecipes.length === 0) {
-            savedListDiv.innerHTML = '<div class="empty-saved"><i class="far fa-bookmark"></i> No saved recipes yet. Click "Save Recipe" on any recipe!</div>';
-            savedContainer.style.display = 'none';
-        } else {
-            savedContainer.style.display = 'block';
-            const recipeNames = { 'sweet-chicken': 'Sweet Chicken Recipe', 'noodles': 'Hearty Noodle Recipe', 'cookies': 'Chocolate Chip Cookies' };
-            savedListDiv.innerHTML = savedRecipes.map(id => `<div class="saved-recipe-chip" data-recipe-id="${id}"><i class="fas fa-utensils"></i><span>${recipeNames[id] || id}</span><button class="remove-saved" data-recipe-id="${id}"><i class="fas fa-times-circle"></i></button></div>`).join('');
-            document.querySelectorAll('.saved-recipe-chip').forEach(chip => {
-                const recipeId = chip.getAttribute('data-recipe-id');
-                chip.addEventListener('click', (e) => { if (e.target.classList.contains('remove-saved') || e.target.parentElement?.classList.contains('remove-saved')) return; const targetMap = { 'sweet-chicken': 'recipe-sweet-chicken', 'noodles': 'recipe-noodles', 'cookies': 'recipe-cookies' }; document.getElementById(targetMap[recipeId])?.scrollIntoView({ behavior: 'smooth' }); showToast(`📖 Scrolling to recipe`); });
-                chip.querySelector('.remove-saved')?.addEventListener('click', (e) => { e.stopPropagation(); savedRecipes = savedRecipes.filter(id => id !== recipeId); localStorage.setItem('letsEat_savedRecipes', JSON.stringify(savedRecipes)); updateSavedUI(); showToast(`🗑️ Recipe removed`); });
-            });
-        }
-    }
-    window.saveRecipe = function(recipeId, recipeName) {
-        if (!savedRecipes.includes(recipeId)) { savedRecipes.push(recipeId); localStorage.setItem('letsEat_savedRecipes', JSON.stringify(savedRecipes)); updateSavedUI(); showToast(`✅ "${recipeName}" saved!`); }
-        else showToast(`📌 "${recipeName}" is already saved`);
-    };
-    document.querySelectorAll('.recipe-save-btn').forEach(btn => { btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); const id = btn.getAttribute('data-recipe'), name = btn.getAttribute('data-name'); if (id && name) window.saveRecipe(id, name); }); });
-    function showToast(msg) { let t = document.createElement('div'); t.innerText = msg; t.style.cssText = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2b1b12; color:#f7e3b2; padding:10px 24px; border-radius:60px; z-index:1001; font-family:Georgia; border:1px solid #e9bc7d;'; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
-    updateSavedUI();
-    document.getElementById('savedRecipesBtn')?.addEventListener('click', () => { const sec = document.getElementById('savedRecipesContainer'); if (sec) { sec.scrollIntoView({ behavior: 'smooth' }); if (savedRecipes.length === 0) showToast('💡 Save recipes by clicking "Save Recipe" on any recipe!'); } });
-})();
+// ========== MODAL FUNCTIONALITY ==========
+const modal = document.getElementById('sweetChickenModal');
+const openModalBtn = document.getElementById('openSweetChickenModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const sweetChickenImg = document.getElementById('sweetChickenImg');
 
-// ========== FUNCTIONAL HEART BUTTON ==========
+function openModal() {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+if (sweetChickenImg) sweetChickenImg.addEventListener('click', openModal);
+if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+// Close modal when clicking outside content
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+// Escape key to close
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+});
+
+// ========== SAVE RECIPE FUNCTIONALITY ==========
+let savedRecipes = JSON.parse(localStorage.getItem('letsEat_savedRecipes')) || [];
+
+function updateSaveButtons() {
+    document.querySelectorAll('.recipe-save-btn').forEach(btn => {
+        const recipeId = btn.getAttribute('data-recipe');
+        if (savedRecipes.includes(recipeId)) {
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> Saved!';
+            btn.classList.add('saved');
+        } else {
+            btn.innerHTML = '<i class="far fa-bookmark"></i> Save Recipe';
+            btn.classList.remove('saved');
+        }
+    });
+    const badge = document.getElementById('savedCountBadge');
+    if (badge) badge.innerText = savedRecipes.length;
+}
+
+function saveRecipe(recipeId, recipeName) {
+    if (!savedRecipes.includes(recipeId)) {
+        savedRecipes.push(recipeId);
+        localStorage.setItem('letsEat_savedRecipes', JSON.stringify(savedRecipes));
+        updateSaveButtons();
+        showToast(`✅ "${recipeName}" saved to your collection!`);
+        return true;
+    } else {
+        showToast(`📌 "${recipeName}" is already saved`);
+        return false;
+    }
+}
+
+function showToast(msg) {
+    let t = document.createElement('div');
+    t.innerText = msg;
+    t.style.cssText = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2b1b12; color:#f7e3b2; padding:10px 24px; border-radius:60px; z-index:1002; font-family:Georgia; border:1px solid #e9bc7d;';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2200);
+}
+
+// Attach save events to all save buttons (including modal)
+document.querySelectorAll('.recipe-save-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = btn.getAttribute('data-recipe');
+        const name = btn.getAttribute('data-name');
+        if (id && name) saveRecipe(id, name);
+    });
+});
+
+updateSaveButtons();
+
+// ========== HEART BUTTON ==========
 (function() {
     const heartBtn = document.getElementById('heartBtn');
     let heartActive = localStorage.getItem('letsEat_heartActive') === 'true';
-    
     function updateHeartButton() {
         if (heartActive) {
             heartBtn.innerHTML = '<i class="fas fa-heart"></i>';
@@ -541,24 +637,16 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
             heartBtn.classList.remove('active-heart');
         }
     }
-    
     updateHeartButton();
-    
     heartBtn.addEventListener('click', () => {
         heartActive = !heartActive;
         localStorage.setItem('letsEat_heartActive', heartActive);
         updateHeartButton();
-        
-        // Show toast message
-        let toast = document.createElement('div');
-        toast.innerText = heartActive ? '❤️ You love this site! Thank you! ❤️' : '💔 Heart removed. We hope you come back! 💔';
-        toast.style.cssText = 'position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#2b1b12; color:#f7e3b2; padding:10px 24px; border-radius:60px; z-index:1000; font-family:Georgia; border:1px solid #e9bc7d;';
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 2200);
+        showToast(heartActive ? '❤️ You love this site! Thank you! ❤️' : '💔 Heart removed');
     });
 })();
 
-// ========== SEARCH & CHECKLIST ==========
+// ========== SEARCH BAR ==========
 (function() {
     const searchInput = document.getElementById('headerSearchInput'), clearBtn = document.getElementById('searchClearBtn'), dropdown = document.getElementById('searchDropdown'), sections = document.querySelectorAll('.recipe-card'), emptyMsg = document.getElementById('emptySearchMessage');
     function getMeta() { let arr = []; sections.forEach(s => { let name = s.querySelector('h2')?.innerText || ''; let text = (s.querySelector('.detailed-steps')?.innerText || '').toLowerCase(); arr.push({ id: s.id, name, fullText: (name + ' ' + text).toLowerCase() }); }); return arr; }
@@ -571,10 +659,13 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     clearBtn?.addEventListener('click', () => { searchInput.value = ''; performSearch(''); searchInput.focus(); hideDropdown(); });
     document.addEventListener('click', e => { if (!searchInput?.contains(e.target) && !dropdown?.contains(e.target) && !clearBtn?.contains(e.target)) hideDropdown(); });
     performSearch('');
-    const checklistItems = document.querySelectorAll('#mealPrepChecklist .checklist-item'), progMsg = document.getElementById('prepProgressMsg');
-    function updateProgress() { let total = checklistItems.length, comp = 0; checklistItems.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); if (progMsg) progMsg.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task!`; }
-    checklistItems.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('click', () => { let icon = i.querySelector('i'); if (icon.classList.contains('fa-square')) { icon.classList.remove('fa-square'); icon.classList.add('fa-check-square'); } else { icon.classList.remove('fa-check-square'); icon.classList.add('fa-square'); } updateProgress(); }); }); updateProgress();
 })();
+
+// ========== CHECKLIST PROGRESS ==========
+const checklistItems = document.querySelectorAll('#mealPrepChecklist .checklist-item');
+const progMsg = document.getElementById('prepProgressMsg');
+function updateProgress() { let total = checklistItems.length, comp = 0; checklistItems.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); if (progMsg) progMsg.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task!`; }
+checklistItems.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('click', () => { let icon = i.querySelector('i'); if (icon.classList.contains('fa-square')) { icon.classList.remove('fa-square'); icon.classList.add('fa-check-square'); } else { icon.classList.remove('fa-check-square'); icon.classList.add('fa-square'); } updateProgress(); }); }); updateProgress();
 
 // ========== RATING STARS ==========
 (function() {
@@ -582,9 +673,18 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     let current = parseInt(localStorage.getItem('letsEat_userRating')) || 0;
     function highlight(r) { stars.forEach(s => { let val = parseInt(s.dataset.rating); if (val <= r) { s.classList.remove('far'); s.classList.add('fas', 'active'); } else { s.classList.remove('fas', 'active'); s.classList.add('far'); } }); }
     highlight(current); if (current > 0 && feedback) feedback.innerHTML = `🙏 You rated ${current} stars! Thank you.`;
-    stars.forEach(s => { s.addEventListener('click', function() { let val = parseInt(this.dataset.rating); if (current === val) return; current = val; localStorage.setItem('letsEat_userRating', current); highlight(current); if (feedback) feedback.innerHTML = `🎉 Thank you for your ${current}-star review! 🎉`; let t = document.createElement('div'); t.innerText = `You rated ${current} stars!`; t.style.cssText = 'position:fixed; bottom:100px; left:50%; transform:translateX(-50%); background:#2b1b12; color:#ffefcf; padding:8px 20px; border-radius:60px; z-index:1001;'; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); }); s.addEventListener('mouseenter', function() { let val = parseInt(this.dataset.rating); stars.forEach(star => { let sv = parseInt(star.dataset.rating); if (sv <= val) { star.classList.remove('far'); star.classList.add('fas'); } else { star.classList.remove('fas'); star.classList.add('far'); } }); }); s.addEventListener('mouseleave', () => highlight(current)); });
-    if (resetBtn) resetBtn.addEventListener('click', () => { current = 0; localStorage.setItem('letsEat_userRating', 0); highlight(0); if (feedback) feedback.innerHTML = `⭐ Click a star to rate again! ⭐`; });
+    stars.forEach(s => { s.addEventListener('click', function() { let val = parseInt(this.dataset.rating); if (current === val) return; current = val; localStorage.setItem('letsEat_userRating', current); highlight(current); if (feedback) feedback.innerHTML = `🎉 Thank you for your ${current}-star review! 🎉`; showToast(`You rated ${current} stars!`); }); s.addEventListener('mouseenter', function() { let val = parseInt(this.dataset.rating); stars.forEach(star => { let sv = parseInt(star.dataset.rating); if (sv <= val) { star.classList.remove('far'); star.classList.add('fas'); } else { star.classList.remove('fas'); star.classList.add('far'); } }); }); s.addEventListener('mouseleave', () => highlight(current)); });
+    if (resetBtn) resetBtn.addEventListener('click', () => { current = 0; localStorage.setItem('letsEat_userRating', 0); highlight(0); if (feedback) feedback.innerHTML = `⭐ Click a star to rate again! ⭐`; showToast(`Rating reset`); });
 })();
+
+// Saved page button (simple alert for demo)
+document.getElementById('savedPageBtn')?.addEventListener('click', () => {
+    if (savedRecipes.length === 0) {
+        showToast('💡 No saved recipes yet. Click "Save Recipe" on any recipe!');
+    } else {
+        showToast(`📚 You have ${savedRecipes.length} saved recipe(s)!`);
+    }
+});
 </script>
 </body>
 </html>
