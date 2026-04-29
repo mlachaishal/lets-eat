@@ -420,10 +420,10 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     <section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
 
     <div id="recipesWrapper">
-        <!-- SWEET CHICKEN -->
+        <!-- SWEET CHICKEN - with local image "chicken S.jpg" -->
         <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey soy sauce savory main dish">
             <div class="container recipe">
-                <img src="https://source.unsplash.com/300x300/?honey+chicken+breast" alt="Sweet chicken skillet" onerror="this.src='https://source.unsplash.com/300x300/?chicken'" id="sweetChickenImg" style="cursor: pointer;">
+                <img src="chicken S.jpg" alt="Sweet Chicken Dish" style="cursor: pointer; object-fit: cover;" onerror="this.src='https://source.unsplash.com/300x300/?honey+chicken+breast'">
                 <div class="recipe-content">
                     <h2>Sweet Chicken Recipe</h2>
                     <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts</p></div>
@@ -502,7 +502,7 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     <div class="modal-content">
         <div class="modal-header"><h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div>
         <div class="modal-body">
-            <img src="https://source.unsplash.com/800x400/?honey+chicken" alt="Sweet Chicken" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chicken'">
+            <img src="chicken S.jpg" alt="Sweet Chicken" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'">
             <div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (bite-sized)</p></div>
             <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Gather all ingredients</span></li><li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a bowl; set aside.</li><li><span class="step-highlight">Heat olive oil</span> in a skillet over medium heat; cook chicken until lightly browned (about 5 minutes).</li><li><span class="step-highlight">Pour honey mixture into the skillet</span>; cook until chicken is no longer pink and sauce thickens (about 5 minutes).</li><li><span class="step-highlight">Serve hot</span> over rice or steamed vegetables. Enjoy!</li></ol></div>
             <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Marinate chicken in soy sauce for 15 minutes for extra flavor!</div>
@@ -571,8 +571,11 @@ document.querySelectorAll('.open-recipe-btn').forEach(btn => {
     });
 });
 
-// Clickable images
-document.getElementById('sweetChickenImg')?.addEventListener('click', () => openModal('sweetChickenModal'));
+// Clickable images - for Sweet Chicken, use the local image
+const sweetChickenLocalImg = document.querySelector('#recipe-sweet-chicken img');
+if (sweetChickenLocalImg) {
+    sweetChickenLocalImg.addEventListener('click', () => openModal('sweetChickenModal'));
+}
 document.getElementById('noodleImg')?.addEventListener('click', () => openModal('noodleModal'));
 document.getElementById('cookieImg')?.addEventListener('click', () => openModal('cookieModal'));
 
