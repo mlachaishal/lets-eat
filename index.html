@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Let's Eat | Sweet Chicken Recipe</title>
+<title>Let's Eat | Recipe Collection</title>
 <!-- Font Awesome 6 (free icons) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
@@ -192,7 +192,7 @@ body {
 .recipe-save-btn.saved { background: #b5651e; }
 .recipe-save-btn.saved i { color: #ffcd7e; }
 
-/* MODAL / POPUP PAGE FOR SWEET CHICKEN RECIPE */
+/* MODAL / POPUP PAGE FOR RECIPES */
 .recipe-modal {
     display: none;
     position: fixed;
@@ -420,29 +420,30 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     <section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
 
     <div id="recipesWrapper">
-        <!-- SWEET CHICKEN - with clickable "View Full Recipe" button -->
+        <!-- SWEET CHICKEN -->
         <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey soy sauce savory main dish">
             <div class="container recipe">
                 <img src="https://source.unsplash.com/300x300/?honey+chicken+breast" alt="Sweet chicken skillet" onerror="this.src='https://source.unsplash.com/300x300/?chicken'" id="sweetChickenImg" style="cursor: pointer;">
                 <div class="recipe-content">
                     <h2>Sweet Chicken Recipe</h2>
-                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (bite-sized)</p></div>
-                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Gather ingredients</span></li><li><span class="step-highlight">Whisk honey, soy, pepper flakes</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li><li><span class="step-highlight">Serve hot</span></li></ol><div class="note-box"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Click "View Full Recipe" for detailed step-by-step instructions!</div></div>
+                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts</p></div>
+                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Whisk honey, soy, pepper flakes</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
-                    <button class="open-recipe-btn" id="openSweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    <button class="open-recipe-btn" data-modal="sweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
             </div>
         </section>
 
         <!-- NOODLES -->
-        <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory">
+        <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory bay leaves thyme">
             <div class="container recipe">
-                <img src="https://source.unsplash.com/300x300/?beef+noodles+bowl" alt="Beef noodle bowl" onerror="this.src='https://source.unsplash.com/300x300/?noodles'">
+                <img src="https://source.unsplash.com/300x300/?beef+noodles+bowl" alt="Beef noodle bowl" onerror="this.src='https://source.unsplash.com/300x300/?noodles'" id="noodleImg" style="cursor: pointer;">
                 <div class="recipe-content">
                     <h2>Noodle Recipe</h2>
                     <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion diced<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme</p></div>
                     <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Sear steak</span></li><li><span class="step-highlight">Sauté onion</span></li><li><span class="step-highlight">Simmer 50 min</span></li><li><span class="step-highlight">Thicken sauce</span></li><li><span class="step-highlight">Serve over noodles</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                    <button class="open-recipe-btn" data-modal="noodleModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
             </div>
         </section>
@@ -450,12 +451,13 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
         <!-- COOKIES -->
         <section id="recipe-cookies" class="recipe-card" data-recipe-name="Chocolate Chip Cookies" data-keywords="cookies dessert chocolate butter">
             <div class="container recipe">
-                <img src="https://source.unsplash.com/300x300/?chocolate+cookies+fresh" alt="Fresh cookies" onerror="this.src='https://source.unsplash.com/300x300/?cookies'">
+                <img src="https://source.unsplash.com/300x300/?chocolate+cookies+fresh" alt="Fresh cookies" onerror="this.src='https://source.unsplash.com/300x300/?cookies'" id="cookieImg" style="cursor: pointer;">
                 <div class="recipe-content">
                     <h2>Chocolate Chip Cookies</h2>
-                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>8 tbsp butter (browned)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
+                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>8 tbsp butter (browned)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
                     <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Brown butter</span></li><li><span class="step-highlight">Mix with sugars</span></li><li><span class="step-highlight">Add egg and vanilla</span></li><li><span class="step-highlight">Fold in flour and chips</span></li><li><span class="step-highlight">Bake at 350°F</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
+                    <button class="open-recipe-btn" data-modal="cookieModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
             </div>
         </section>
@@ -495,46 +497,44 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     </section>
 </div>
 
-<!-- MODAL / POPUP PAGE FOR SWEET CHICKEN RECIPE (Clickable Full Page) -->
+<!-- MODAL: SWEET CHICKEN RECIPE -->
 <div id="sweetChickenModal" class="recipe-modal">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2>
-            <button class="close-modal" id="closeModalBtn">&times;</button>
-        </div>
+        <div class="modal-header"><h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div>
         <div class="modal-body">
             <img src="https://source.unsplash.com/800x400/?honey+chicken" alt="Sweet Chicken" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chicken'">
-            
-            <div class="modal-ingredients">
-                <h3><i class="fas fa-clipboard-list"></i> Full Ingredients List</h3>
-                <p>
-                    <strong>¼ cup honey</strong><br>
-                    <strong>2 tbsp soy sauce</strong><br>
-                    <strong>½ tsp red pepper flakes</strong><br>
-                    <strong>1½ tbsp olive oil</strong><br>
-                    <strong>2 boneless chicken breasts</strong> (cut into bite-sized pieces)
-                </p>
-            </div>
-            
-            <div class="modal-steps">
-                <h3><i class="fas fa-cooking"></i> Detailed Step-by-Step Instructions</h3>
-                <ol>
-                    <li><span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts by cutting them into bite-sized pieces.</li>
-                    <li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside for later.</li>
-                    <li><span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add the chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).</li>
-                    <li><span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until the chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).</li>
-                    <li><span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Garnish with sesame seeds or green onions if desired.</li>
-                    <li><span class="step-highlight">Enjoy</span> your homemade sweet chicken! Leftovers can be stored in an airtight container in the refrigerator for up to 3 days.</li>
-                </ol>
-            </div>
-            
-            <div class="modal-note">
-                <i class="fas fa-lightbulb"></i> <strong>Chef's Tip:</strong> For extra flavor, marinate the chicken in soy sauce for 15 minutes before cooking. You can also add a teaspoon of fresh ginger or garlic for more depth!
-            </div>
-            
-            <div style="margin-top: 25px; text-align: center;">
-                <button class="recipe-save-btn" id="modalSaveBtn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button>
-            </div>
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (bite-sized)</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Gather all ingredients</span></li><li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a bowl; set aside.</li><li><span class="step-highlight">Heat olive oil</span> in a skillet over medium heat; cook chicken until lightly browned (about 5 minutes).</li><li><span class="step-highlight">Pour honey mixture into the skillet</span>; cook until chicken is no longer pink and sauce thickens (about 5 minutes).</li><li><span class="step-highlight">Serve hot</span> over rice or steamed vegetables. Enjoy!</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Marinate chicken in soy sauce for 15 minutes for extra flavor!</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: NOODLE RECIPE -->
+<div id="noodleModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2><i class="fas fa-utensil-spoon"></i> Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div>
+        <div class="modal-body">
+            <img src="https://source.unsplash.com/800x400/?beef+noodles+stew" alt="Beef Noodles" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?noodles'">
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme, salt & pepper</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Sear steak</span> in batches until browned, about 5 minutes. Transfer to plate.</li><li><span class="step-highlight">Melt butter</span> and sauté onion until softened, 5-10 minutes.</li><li><span class="step-highlight">Add steak back</span> with beef stock, bay leaves, thyme, salt, pepper. Bring to boil, then simmer covered 50 minutes.</li><li><span class="step-highlight">Stir in peas and cornstarch slurry</span>; cook uncovered until thickened, about 10 minutes. Remove bay leaves.</li><li><span class="step-highlight">Boil egg noodles</span> in salted water until al dente (about 5 minutes); drain.</li><li><span class="step-highlight">Serve beef mixture over noodles</span> with extra gravy.</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes steak incredibly tender. For deeper flavor, deglaze with red wine before adding stock.</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: CHOCOLATE CHIP COOKIES -->
+<div id="cookieModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2><i class="fas fa-cookie-bite"></i> Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div>
+        <div class="modal-body">
+            <img src="https://source.unsplash.com/800x400/?chocolate+cookies+batch" alt="Chocolate Chip Cookies" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?cookies'">
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups flour<br>1 cup chocolate chips<br>Sea salt for sprinkling</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Brown Butter Method</h3><ol><li><span class="step-highlight">Preheat oven to 350°F</span>. Line baking sheet with parchment.</li><li><span class="step-highlight">Brown the butter</span> in a pot until amber and nutty (3-5 min). Remove from heat.</li><li><span class="step-highlight">Let brown butter cool until warm</span>, then mix with white and brown sugar.</li><li><span class="step-highlight">Add egg</span> and mix until smooth and glossy.</li><li><span class="step-highlight">Add vanilla and salt</span>; add baking soda into vanilla before mixing.</li><li><span class="step-highlight">Add flour and chocolate chips</span>, mix until no flour specks remain.</li><li><span class="step-highlight">Scoop dough balls</span> onto prepared sheet, sprinkle with sea salt.</li><li><span class="step-highlight">Bake 10-12 minutes</span> until edges golden but centers soft.</li><li><span class="step-highlight">Cool 8-10 minutes</span> on baking sheet, then transfer to rack. Enjoy!</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Baker's Tip:</strong> Chill dough for 30 minutes for extra chewy cookies. Brown butter adds deep caramel notes!</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
         </div>
     </div>
 </div>
@@ -542,34 +542,65 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 <div id="emptySearchMessage" style="display: none;" class="no-recipes-message"><i class="fas fa-search-minus"></i> No recipes match your search.</div>
 
 <script>
-// ========== MODAL FUNCTIONALITY ==========
-const modal = document.getElementById('sweetChickenModal');
-const openModalBtn = document.getElementById('openSweetChickenModal');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const sweetChickenImg = document.getElementById('sweetChickenImg');
+// ========== MODAL FUNCTIONALITY FOR ALL RECIPES ==========
+const modals = {
+    sweetChickenModal: document.getElementById('sweetChickenModal'),
+    noodleModal: document.getElementById('noodleModal'),
+    cookieModal: document.getElementById('cookieModal')
+};
 
-function openModal() {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+function openModal(modalId) {
+    if (modals[modalId]) {
+        modals[modalId].classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
+function closeModal(modalId) {
+    if (modals[modalId]) {
+        modals[modalId].classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
-if (openModalBtn) openModalBtn.addEventListener('click', openModal);
-if (sweetChickenImg) sweetChickenImg.addEventListener('click', openModal);
-if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-
-// Close modal when clicking outside content
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+// Open modal buttons
+document.querySelectorAll('.open-recipe-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-modal');
+        if (modalId) openModal(modalId);
+    });
 });
 
-// Escape key to close
+// Clickable images
+document.getElementById('sweetChickenImg')?.addEventListener('click', () => openModal('sweetChickenModal'));
+document.getElementById('noodleImg')?.addEventListener('click', () => openModal('noodleModal'));
+document.getElementById('cookieImg')?.addEventListener('click', () => openModal('cookieModal'));
+
+// Close modal buttons
+document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-modal');
+        if (modalId) closeModal(modalId);
+    });
+});
+
+// Close modal when clicking outside content
+Object.keys(modals).forEach(modalId => {
+    const modal = modals[modalId];
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(modalId);
+        });
+    }
+});
+
+// Escape key to close any open modal
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    if (e.key === 'Escape') {
+        Object.keys(modals).forEach(modalId => {
+            if (modals[modalId]?.classList.contains('active')) closeModal(modalId);
+        });
+    }
 });
 
 // ========== SAVE RECIPE FUNCTIONALITY ==========
@@ -611,7 +642,7 @@ function showToast(msg) {
     setTimeout(() => t.remove(), 2200);
 }
 
-// Attach save events to all save buttons (including modal)
+// Attach save events to all save buttons
 document.querySelectorAll('.recipe-save-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -677,7 +708,7 @@ checklistItems.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('cl
     if (resetBtn) resetBtn.addEventListener('click', () => { current = 0; localStorage.setItem('letsEat_userRating', 0); highlight(0); if (feedback) feedback.innerHTML = `⭐ Click a star to rate again! ⭐`; showToast(`Rating reset`); });
 })();
 
-// Saved page button (simple alert for demo)
+// Saved page button
 document.getElementById('savedPageBtn')?.addEventListener('click', () => {
     if (savedRecipes.length === 0) {
         showToast('💡 No saved recipes yet. Click "Save Recipe" on any recipe!');
