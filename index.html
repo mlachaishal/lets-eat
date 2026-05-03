@@ -37,11 +37,6 @@ body::before {
     z-index: -2;
 }
 
-/* Ensure all content sections have slight transparency or blend well */
-section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, .prep-card, .recipe-card .container {
-    backdrop-filter: blur(0px);
-}
-
 /* Adjust header to blend with background */
 .main-header {
     background-color: rgba(43, 27, 18, 0.92);
@@ -59,14 +54,8 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     background: rgba(253, 243, 226, 0.95);
 }
 
-.recipe-card .container .recipe img {
-    border: 2px solid #f3deba;
-    box-shadow: 8px 12px 18px rgba(0,0,0,0.2);
-}
-
 .hero {
     background: rgba(199, 166, 124, 0.85);
-    background-image: radial-gradient(circle at 10% 30%, rgba(255,235,200,0.4) 2%, transparent 2.5%);
 }
 
 .meal-prep-section {
@@ -97,15 +86,172 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     background: rgba(255, 242, 226, 0.95);
 }
 
-/* MODAL background - keep dark but with image influence */
+/* MODAL */
 .recipe-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.88);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px 20px;
 }
-
+.recipe-modal.active { display: block; }
 .modal-content {
+    max-width: 900px;
+    margin: 0 auto;
     background: #fdf3e2;
+    border-radius: 48px;
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.modal-header {
+    background: #2b1b12;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #e9bc7d;
+}
+.modal-header h2 { color: #f7e3b2; margin: 0; }
+.close-modal {
+    background: none;
+    border: none;
+    color: #e9bc7d;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.modal-body { padding: 30px; }
+.modal-recipe-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 24px;
+    margin-bottom: 25px;
+}
+.modal-ingredients, .modal-steps {
+    background: #fffaf0;
+    padding: 20px;
+    border-radius: 24px;
+    margin-top: 20px;
+}
+.modal-ingredients h3, .modal-steps h3 {
+    border-left: 5px solid #b5651e;
+    padding-left: 12px;
+    margin-bottom: 15px;
+    color: #4b2e1a;
+}
+.modal-steps ol { margin-left: 20px; line-height: 1.8; }
+.modal-note {
+    background: #e9bc7d20;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 20px;
+    border-left: 4px solid #b5651e;
+    font-style: italic;
 }
 
+/* Saved Recipes Page (Full Page) */
+.saved-page {
+    display: none;
+    padding: 40px 20px;
+    min-height: 70vh;
+}
+.saved-page.active {
+    display: block;
+}
+.main-content {
+    display: block;
+}
+.main-content.hide {
+    display: none;
+}
+.saved-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.saved-header h1 {
+    font-size: 2.5rem;
+    color: #2b1b12;
+    text-shadow: 2px 2px 4px rgba(255,255,200,0.5);
+}
+.back-to-home {
+    background: #2b1b12;
+    color: #f7e3b2;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+.back-to-home:hover { background: #b5651e; }
+.saved-recipes-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.saved-recipe-card {
+    background: rgba(253, 243, 226, 0.95);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.saved-recipe-card:hover { transform: translateY(-5px); }
+.saved-recipe-img {
+    height: 180px;
+    background: #e9bc7d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: #2b1b12;
+}
+.saved-recipe-info { padding: 20px; }
+.saved-recipe-info h3 { margin-bottom: 10px; color: #4b2e1a; }
+.saved-recipe-info p { color: #6b4a35; margin-bottom: 15px; font-size: 0.85rem; }
+.view-recipe-btn, .remove-saved-btn {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+.view-recipe-btn {
+    background: #2b1b12;
+    color: #f7e3b2;
+}
+.view-recipe-btn:hover { background: #b5651e; }
+.remove-saved-btn {
+    background: #8b3c1c;
+    color: white;
+}
+.remove-saved-btn:hover { background: #a04020; }
+.empty-saved-page {
+    text-align: center;
+    padding: 60px;
+    background: rgba(253, 243, 226, 0.95);
+    border-radius: 48px;
+    max-width: 500px;
+    margin: 40px auto;
+}
+.empty-saved-page i { font-size: 4rem; color: #b5651e; margin-bottom: 20px; }
+
+/* Header */
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -115,66 +261,34 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     flex-wrap: wrap;
     gap: 1.2rem;
 }
-
 .brand {
     display: flex;
     align-items: center;
     gap: 0.6rem;
     font-size: 1.7rem;
     font-weight: bold;
-    letter-spacing: 2px;
     color: #f7e3b2;
-    font-family: 'Georgia', serif;
     cursor: pointer;
 }
-.brand i {
-    font-size: 1.8rem;
-    color: #e9bc7d;
-}
-.brand span {
-    background: linear-gradient(135deg, #f7e3b2, #e9bc7d);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* SEARCH BAR */
-.search-wrapper {
-    flex: 1;
-    max-width: 500px;
-    min-width: 240px;
-}
-.search-container {
-    position: relative;
-    width: 100%;
-}
+.brand i { font-size: 1.8rem; color: #e9bc7d; }
+.search-wrapper { flex: 1; max-width: 500px; min-width: 240px; }
+.search-container { position: relative; }
 .search-icon {
     position: absolute;
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
     color: #b87c4f;
-    font-size: 0.95rem;
-    pointer-events: none;
 }
 .search-input {
     width: 100%;
-    padding: 0.75rem 2.6rem 0.75rem 2.6rem;
+    padding: 0.75rem 2.6rem;
     font-size: 0.95rem;
     font-family: 'Georgia', serif;
-    border: none;
     border-radius: 60px;
     background-color: rgba(255, 246, 234, 0.95);
     border: 1px solid #e2c7a1;
-    transition: all 0.2s ease;
     outline: none;
-    color: #2b1b12;
-    font-weight: 500;
-}
-.search-input:focus {
-    background-color: #ffffff;
-    border-color: #d6a05e;
-    box-shadow: 0 0 0 3px rgba(219, 146, 56, 0.25);
 }
 .search-clear {
     position: absolute;
@@ -185,11 +299,8 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     border: none;
     color: #b87c4f;
     cursor: pointer;
-    font-size: 1rem;
     display: none;
-    padding: 4px;
 }
-.search-clear:hover { color: #5e3a23; }
 .search-results-dropdown {
     position: absolute;
     top: calc(100% + 8px);
@@ -197,7 +308,6 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     right: 0;
     background: #fffef7;
     border-radius: 20px;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     max-height: 360px;
     overflow-y: auto;
     z-index: 200;
@@ -214,15 +324,7 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     gap: 0.8rem;
 }
 .result-item:hover { background-color: #fcf3e6; }
-.result-icon { width: 32px; text-align: center; color: #c17b3c; }
-.result-title { font-weight: 700; color: #3e2a1f; }
-.no-results { padding: 1.2rem; text-align: center; color: #8b694a; }
-
-.header-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
+.header-actions { display: flex; gap: 1rem; align-items: center; }
 .icon-btn {
     background: rgba(255, 245, 225, 0.2);
     border: none;
@@ -231,7 +333,6 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     padding: 0.5rem 0.9rem;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.2s;
     position: relative;
 }
 .icon-btn:hover { background: #d6a05e; color: #2b1b12; }
@@ -257,147 +358,28 @@ section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, 
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
     margin-top: 15px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
 }
-.recipe-save-btn:hover { background: #b5651e; transform: scale(1.02); }
+.recipe-save-btn:hover { background: #b5651e; }
 .recipe-save-btn.saved { background: #b5651e; }
-.recipe-save-btn.saved i { color: #ffcd7e; }
 
-/* MODAL / POPUP PAGE FOR RECIPES */
-.recipe-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    overflow-y: auto;
-    padding: 40px 20px;
-}
-.recipe-modal.active {
-    display: block;
-}
-.modal-content {
-    max-width: 900px;
-    margin: 0 auto;
-    background: #fdf3e2;
-    border-radius: 48px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    animation: modalFadeIn 0.3s ease;
-}
-@keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.modal-header {
-    background: #2b1b12;
-    padding: 20px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 3px solid #e9bc7d;
-}
-.modal-header h2 {
-    color: #f7e3b2;
-    margin: 0;
-    font-size: 1.8rem;
-}
-.close-modal {
-    background: none;
-    border: none;
-    color: #e9bc7d;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.close-modal:hover {
-    transform: scale(1.1);
-    color: #ffcd7e;
-}
-.modal-body {
-    padding: 30px;
-}
-.modal-recipe-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 24px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-.modal-ingredients, .modal-steps {
-    background: #fffaf0;
-    padding: 20px;
-    border-radius: 24px;
-    margin-top: 20px;
-    box-shadow: inset 0 0 0 1px #fff6ea, 0 4px 8px rgba(0,0,0,0.05);
-}
-.modal-ingredients h3, .modal-steps h3 {
-    border-left: 5px solid #b5651e;
-    padding-left: 12px;
-    margin-bottom: 15px;
-    color: #4b2e1a;
-}
-.modal-steps ol {
-    margin-left: 20px;
-    line-height: 1.8;
-}
-.modal-steps li {
-    margin-bottom: 12px;
-    color: #2b1b12;
-}
-.modal-note {
-    background: #e9bc7d20;
-    padding: 15px;
-    border-radius: 20px;
-    margin-top: 20px;
-    border-left: 4px solid #b5651e;
-    font-style: italic;
-}
-.open-recipe-btn {
-    background: #2b1b12;
-    color: #f7e3b2;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-top: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
-}
-.open-recipe-btn:hover {
-    background: #b5651e;
-    transform: scale(1.02);
-}
-
-/* Recipe Layout for Home Page */
+/* Recipe Layout */
 section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
-h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .container { max-width: 1100px; margin: auto; }
-.hero { text-align: center; background: rgba(199, 166, 124, 0.85); background-image: radial-gradient(circle at 10% 30%, rgba(255,235,200,0.4) 2%, transparent 2.5%); }
+.hero { text-align: center; }
 .hero h1 { font-size: 64px; letter-spacing: 8px; text-shadow: 4px 4px 0 #9b6e48; color: #2b1b12; }
 .quote { font-style: italic; margin-bottom: 30px; font-size: 1.2rem; color: #3a2a1c; }
-
 .recipe { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
-.recipe img { width: 280px; border-radius: 24px; box-shadow: 8px 12px 18px rgba(0,0,0,0.2); object-fit: cover; height: 260px; border: 2px solid #f3deba; cursor: pointer; transition: transform 0.2s; }
-.recipe img:hover { transform: scale(1.02); }
+.recipe img { width: 280px; border-radius: 24px; box-shadow: 8px 12px 18px rgba(0,0,0,0.2); object-fit: cover; height: 260px; border: 2px solid #f3deba; cursor: pointer; }
 .recipe-content { flex: 1; }
 .ingredients, .detailed-steps {
     margin-top: 20px;
     background: rgba(253, 243, 226, 0.95);
     padding: 14px 18px;
     border-radius: 20px;
-    box-shadow: inset 0 0 0 1px #fff6ea, 0 4px 8px rgba(0,0,0,0.02);
 }
 .ingredients h3, .detailed-steps h3 {
     border-left: 5px solid #b5651e;
@@ -406,64 +388,27 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
     color: #4b2e1a;
 }
 .detailed-steps ol { margin-left: 20px; line-height: 1.7; }
-.detailed-steps li { margin-bottom: 12px; color: #000000; }
-.step-highlight { background: #e9bc7d30; padding: 2px 6px; border-radius: 12px; font-weight: 600; color: #000000; }
-.note-box {
-    background: #e9bc7d20;
-    padding: 10px 15px;
-    border-radius: 16px;
-    margin-top: 12px;
-    font-style: italic;
-    border-left: 3px solid #b5651e;
-    color: #000000;
-}
-.wave-bg .detailed-steps li, .wave-bg .note-box { color: #000000 !important; }
+.step-highlight { background: #e9bc7d30; padding: 2px 6px; border-radius: 12px; font-weight: 600; }
 
 /* Meal Prep */
-.meal-prep-section {
-    background: linear-gradient(135deg, rgba(90, 62, 40, 0.92) 0%, rgba(61, 42, 27, 0.92) 100%);
-    color: #fef5e8;
-}
 .meal-prep-section h2, .meal-prep-section h3 { color: #ffefcf; border-bottom: 2px solid #e9bc7d; display: inline-block; padding-bottom: 8px; }
 .prep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
-.prep-card { background: rgba(255, 250, 240, 0.95); color: #2b1b12; padding: 28px 22px; border-radius: 28px; box-shadow: 0 12px 24px rgba(0,0,0,0.2); transition: transform 0.2s; }
-.prep-card:hover { transform: translateY(-6px); }
+.prep-card { padding: 28px 22px; border-radius: 28px; }
 .prep-card i { font-size: 2.2rem; color: #b5651e; margin-bottom: 18px; }
-.prep-card h3 { color: #4b2e1a; border-bottom: none; }
-.prep-card li { margin-left: 20px; margin-bottom: 8px; }
-.week-plan { background: #2d2418; border-radius: 32px; padding: 28px; margin: 35px 0; }
-.week-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
-.day-card { background: #3f2e20; padding: 16px; border-radius: 18px; text-align: center; }
-.day-card strong { color: #f7d9a0; display: block; }
-.day-card p { font-size: 0.85rem; margin-top: 8px; color: #e9dccd; }
-.storage-tips { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 30px 0; }
-.tip-item { background: #efdecb; border-radius: 60px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 12px; color: #2b1b12; font-weight: bold; }
-.checklist { background: rgba(255, 247, 237, 0.95); border-radius: 28px; padding: 24px; margin-top: 30px; }
-.checklist h3 { color: #4b2e1a; border-left: 6px solid #b5651e; padding-left: 16px; }
+.checklist { padding: 24px; border-radius: 28px; margin-top: 30px; }
 .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 18px; }
 .checklist-item { display: flex; align-items: center; gap: 12px; background: #fcf3e6; padding: 10px 16px; border-radius: 50px; cursor: pointer; }
-.checklist-item span { color: #000000; font-weight: 500; }
-.progress-text { text-align: center; margin-top: 24px; font-weight: bold; background: #e9bc7d40; padding: 12px; border-radius: 60px; color: #000000; }
-.pro-tip-box { background: rgba(255, 242, 226, 0.95); border-radius: 48px; padding: 24px; margin-top: 35px; text-align: center; color: #000000; }
-.pro-tip-box i { font-size: 2rem; color: #b5651e; }
-.pro-tip-box p { margin-top: 12px; color: #000000; font-weight: 500; }
-
-/* Review Stars */
-.review-container { margin: 30px auto; text-align: center; background: rgba(43, 27, 18, 0.7); padding: 25px; border-radius: 60px; }
+.progress-text { text-align: center; margin-top: 24px; font-weight: bold; padding: 12px; border-radius: 60px; }
+.pro-tip-box { border-radius: 48px; padding: 24px; margin-top: 35px; text-align: center; }
 .rating-stars { display: flex; justify-content: center; gap: 18px; margin: 20px 0; }
-.rating-stars i { font-size: 52px; cursor: pointer; transition: transform 0.2s; color: #c0a080; }
-.rating-stars i:hover { transform: scale(1.2); color: #ffcd7e; }
-.rating-stars i.active { color: #ffcd7e; text-shadow: 0 0 6px #ffaa44; }
+.rating-stars i { font-size: 52px; cursor: pointer; color: #c0a080; }
+.rating-stars i.active { color: #ffcd7e; }
 .reset-rating { background: none; border: 1px solid #e9bc7d; color: #f7e3b2; padding: 5px 15px; border-radius: 40px; cursor: pointer; }
-.wave-bg { background: linear-gradient(to bottom, rgba(199, 166, 124, 0.85) 50%, rgba(107, 74, 53, 0.85) 50%); }
-.no-recipes-message { text-align: center; padding: 2rem; background: #f7e9d7; border-radius: 40px; margin: 2rem auto; max-width: 600px; }
 
 @media (max-width: 760px) {
     .header-container { flex-direction: column; align-items: stretch; }
     .hero h1 { font-size: 42px; }
     .rating-stars i { font-size: 38px; }
-    .modal-body { padding: 20px; }
-    .modal-recipe-img { height: 200px; }
 }
 </style>
 </head>
@@ -478,7 +423,7 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
         <div class="search-wrapper">
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="headerSearchInput" placeholder="Search recipes: chicken, noodles, cookies...">
+                <input type="text" class="search-input" id="headerSearchInput" placeholder="Search recipes...">
                 <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
                 <div class="search-results-dropdown" id="searchDropdown"></div>
             </div>
@@ -491,46 +436,43 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 </header>
 
 <!-- MAIN CONTENT (Home Page) -->
-<div id="mainContent">
+<div id="mainContent" class="main-content">
     <section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
 
     <div id="recipesWrapper">
-        <!-- SWEET CHICKEN - with local image "chicken S.jpg" -->
-        <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey soy sauce savory main dish">
+        <section id="recipe-sweet-chicken" class="recipe-card" data-recipe-name="Sweet Chicken Recipe" data-keywords="chicken honey">
             <div class="container recipe">
-                <img src="chicken S.jpg" alt="Sweet Chicken Dish" style="cursor: pointer; object-fit: cover;" onerror="this.src='https://source.unsplash.com/300x300/?honey+chicken+breast'">
+                <img src="chicken S.jpg" alt="Sweet Chicken" onerror="this.src='https://source.unsplash.com/300x300/?honey+chicken'">
                 <div class="recipe-content">
                     <h2>Sweet Chicken Recipe</h2>
-                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts</p></div>
-                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Whisk honey, soy, pepper flakes</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li></ol></div>
+                    <div class="ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 chicken breasts</p></div>
+                    <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Whisk honey, soy, pepper</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
                     <button class="open-recipe-btn" data-modal="sweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
             </div>
         </section>
 
-        <!-- NOODLES - with local image "NOodle n.jpg" -->
-        <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef onion stock savory bay leaves thyme">
+        <section id="recipe-noodles" class="recipe-card wave-bg" data-recipe-name="Hearty Noodle Recipe" data-keywords="noodles steak beef">
             <div class="container recipe">
-                <img src="NOodle n.jpg" alt="Hearty Beef Noodles" style="cursor: pointer; object-fit: cover;" onerror="this.src='https://source.unsplash.com/300x300/?beef+noodles+bowl'">
+                <img src="NOodle n.jpg" alt="Beef Noodles" onerror="this.src='https://source.unsplash.com/300x300/?noodles'">
                 <div class="recipe-content">
                     <h2>Noodle Recipe</h2>
-                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion diced<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme</p></div>
-                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Sear steak</span></li><li><span class="step-highlight">Sauté onion</span></li><li><span class="step-highlight">Simmer 50 min</span></li><li><span class="step-highlight">Thicken sauce</span></li><li><span class="step-highlight">Serve over noodles</span></li></ol></div>
+                    <div class="ingredients"><h3>Ingredients</h3><p>1 lb steak<br>2 tbsp butter<br>1 onion<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry</p></div>
+                    <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Sear steak</span></li><li><span class="step-highlight">Sauté onion</span></li><li><span class="step-highlight">Simmer 50 min</span></li><li><span class="step-highlight">Serve over noodles</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
                     <button class="open-recipe-btn" data-modal="noodleModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
             </div>
         </section>
 
-        <!-- COOKIES - with local image "cookie.jpg" -->
-        <section id="recipe-cookies" class="recipe-card" data-recipe-name="Chocolate Chip Cookies" data-keywords="cookies dessert chocolate butter">
+        <section id="recipe-cookies" class="recipe-card" data-recipe-name="Chocolate Chip Cookies" data-keywords="cookies chocolate">
             <div class="container recipe">
-                <img src="cookie.jpg" alt="Chocolate Chip Cookies" style="cursor: pointer; object-fit: cover;" onerror="this.src='https://source.unsplash.com/300x300/?chocolate+cookies+fresh'">
+                <img src="cookie.jpg" alt="Cookies" onerror="this.src='https://source.unsplash.com/300x300/?cookies'">
                 <div class="recipe-content">
                     <h2>Chocolate Chip Cookies</h2>
-                    <div class="ingredients"><h3><i class="fas fa-clipboard-list"></i> Ingredients</h3><p>8 tbsp butter (browned)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
-                    <div class="detailed-steps"><h3><i class="fas fa-cooking"></i> Quick Overview</h3><ol><li><span class="step-highlight">Brown butter</span></li><li><span class="step-highlight">Mix with sugars</span></li><li><span class="step-highlight">Add egg and vanilla</span></li><li><span class="step-highlight">Fold in flour and chips</span></li><li><span class="step-highlight">Bake at 350°F</span></li></ol></div>
+                    <div class="ingredients"><h3>Ingredients</h3><p>8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
+                    <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Brown butter</span></li><li><span class="step-highlight">Mix with sugars</span></li><li><span class="step-highlight">Add egg and vanilla</span></li><li><span class="step-highlight">Fold in flour and chips</span></li><li><span class="step-highlight">Bake at 350°F</span></li></ol></div>
                     <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
                     <button class="open-recipe-btn" data-modal="cookieModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
                 </div>
@@ -538,156 +480,69 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
         </section>
     </div>
 
-    <!-- Meal Prep Section -->
     <section class="meal-prep-section">
         <div class="container">
-            <h2><i class="fas fa-calendar-week"></i> Ultimate Meal Prep Guide</h2>
+            <h2>Ultimate Meal Prep Guide</h2>
             <div class="prep-grid">
                 <div class="prep-card"><i class="fas fa-kitchen-set"></i><h3>Weekly Strategy</h3><ul><li>Choose 3-4 recipes</li><li>Sunday batch cooking</li></ul></div>
-                <div class="prep-card"><i class="fas fa-box-open"></i><h3>Storage</h3><ul><li>Glass airtight containers</li><li>Label with dates</li></ul></div>
+                <div class="prep-card"><i class="fas fa-box-open"></i><h3>Storage</h3><ul><li>Glass containers</li><li>Label with dates</li></ul></div>
                 <div class="prep-card"><i class="fas fa-temperature-low"></i><h3>Freezer Tips</h3><ul><li>Soups freeze well</li><li>Flash-freeze dough</li></ul></div>
             </div>
             <div class="checklist" id="mealPrepChecklist"><h3>Sunday Prep Checklist</h3><div class="checklist-grid"><label class="checklist-item"><i class="far fa-square"></i> <span>Chop vegetables</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Cook grains</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Marinate proteins</span></label><label class="checklist-item"><i class="far fa-square"></i> <span>Portion snacks</span></label></div><div class="progress-text" id="prepProgressMsg">✅ 0 / 4 tasks completed</div></div>
-            <div class="pro-tip-box"><i class="fas fa-lightbulb"></i><p><strong>Pro Tip:</strong> The beef noodle recipe is perfect for meal prep — the slow-simmered steak becomes even more flavorful the next day!</p></div>
+            <div class="pro-tip-box"><i class="fas fa-lightbulb"></i><p><strong>Pro Tip:</strong> The beef noodle recipe is perfect for meal prep!</p></div>
         </div>
     </section>
 
-    <!-- Footer -->
     <section class="footer wave-bg">
         <div class="container">
             <h2>THANK YOU</h2>
             <p>for visiting our website</p>
             <div class="review-container">
-                <div class="review-label">🍽️ Rate Your Experience 🍽️</div>
                 <div class="rating-stars" id="clickableStars">
                     <i class="far fa-star" data-rating="1"></i><i class="far fa-star" data-rating="2"></i>
                     <i class="far fa-star" data-rating="3"></i><i class="far fa-star" data-rating="4"></i>
                     <i class="far fa-star" data-rating="5"></i>
                 </div>
-                <div class="rating-feedback" id="starFeedback">⭐ Click a star to leave your rating! ⭐</div>
-                <button class="reset-rating" id="resetRatingsBtn">↻ Reset My Rating</button>
+                <div class="rating-feedback" id="starFeedback">⭐ Click a star to rate! ⭐</div>
+                <button class="reset-rating" id="resetRatingsBtn">Reset Rating</button>
             </div>
             <p>lets eat@email.com</p>
         </div>
     </section>
 </div>
 
-<!-- MODAL: SWEET CHICKEN RECIPE -->
-<div id="sweetChickenModal" class="recipe-modal">
-    <div class="modal-content">
-        <div class="modal-header"><h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div>
-        <div class="modal-body">
-            <img src="chicken S.jpg" alt="Sweet Chicken" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'">
-            <div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (bite-sized)</p></div>
-            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Gather all ingredients</span></li><li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a bowl; set aside.</li><li><span class="step-highlight">Heat olive oil</span> in a skillet over medium heat; cook chicken until lightly browned (about 5 minutes).</li><li><span class="step-highlight">Pour honey mixture into the skillet</span>; cook until chicken is no longer pink and sauce thickens (about 5 minutes).</li><li><span class="step-highlight">Serve hot</span> over rice or steamed vegetables. Enjoy!</li></ol></div>
-            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> Marinate chicken in soy sauce for 15 minutes for extra flavor!</div>
-            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+<!-- SAVED RECIPES PAGE -->
+<div id="savedPage" class="saved-page">
+    <div class="container">
+        <div class="saved-header">
+            <h1><i class="fas fa-bookmark"></i> My Saved Recipes</h1>
+            <button class="back-to-home" id="backToHomeBtn"><i class="fas fa-arrow-left"></i> Back to Home</button>
         </div>
+        <div id="savedRecipesFullList" class="saved-recipes-full"></div>
     </div>
 </div>
 
-<!-- MODAL: NOODLE RECIPE -->
-<div id="noodleModal" class="recipe-modal">
-    <div class="modal-content">
-        <div class="modal-header"><h2><i class="fas fa-utensil-spoon"></i> Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div>
-        <div class="modal-body">
-            <img src="NOodle n.jpg" alt="Hearty Beef Noodles" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?beef+noodles+stew'">
-            <div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak (cubed)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch slurry<br>2 bay leaves, 1 tsp thyme, salt & pepper</p></div>
-            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Sear steak</span> in batches until browned, about 5 minutes. Transfer to plate.</li><li><span class="step-highlight">Melt butter</span> and sauté onion until softened, 5-10 minutes.</li><li><span class="step-highlight">Add steak back</span> with beef stock, bay leaves, thyme, salt, pepper. Bring to boil, then simmer covered 50 minutes.</li><li><span class="step-highlight">Stir in peas and cornstarch slurry</span>; cook uncovered until thickened, about 10 minutes. Remove bay leaves.</li><li><span class="step-highlight">Boil egg noodles</span> in salted water until al dente (about 5 minutes); drain.</li><li><span class="step-highlight">Serve beef mixture over noodles</span> with extra gravy.</li></ol></div>
-            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes steak incredibly tender. For deeper flavor, deglaze with red wine before adding stock.</div>
-            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
-        </div>
-    </div>
-</div>
+<!-- MODALS -->
+<div id="sweetChickenModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div><div class="modal-body"><img src="chicken S.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'"><div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 chicken breasts</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Whisk honey, soy, pepper flakes</li><li>Heat oil, cook chicken until browned</li><li>Add sauce, cook until thickened</li><li>Serve hot</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Tip: Marinate chicken for extra flavor!</div></div></div></div>
 
-<!-- MODAL: CHOCOLATE CHIP COOKIES -->
-<div id="cookieModal" class="recipe-modal">
-    <div class="modal-content">
-        <div class="modal-header"><h2><i class="fas fa-cookie-bite"></i> Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div>
-        <div class="modal-body">
-            <img src="cookie.jpg" alt="Chocolate Chip Cookies" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chocolate+cookies+batch'">
-            <div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups flour<br>1 cup chocolate chips<br>Sea salt for sprinkling</p></div>
-            <div class="modal-steps"><h3>Step-by-Step Brown Butter Method</h3><ol><li><span class="step-highlight">Preheat oven to 350°F</span>. Line baking sheet with parchment.</li><li><span class="step-highlight">Brown the butter</span> in a pot until amber and nutty (3-5 min). Remove from heat.</li><li><span class="step-highlight">Let brown butter cool until warm</span>, then mix with white and brown sugar.</li><li><span class="step-highlight">Add egg</span> and mix until smooth and glossy.</li><li><span class="step-highlight">Add vanilla and salt</span>; add baking soda into vanilla before mixing.</li><li><span class="step-highlight">Add flour and chocolate chips</span>, mix until no flour specks remain.</li><li><span class="step-highlight">Scoop dough balls</span> onto prepared sheet, sprinkle with sea salt.</li><li><span class="step-highlight">Bake 10-12 minutes</span> until edges golden but centers soft.</li><li><span class="step-highlight">Cool 8-10 minutes</span> on baking sheet, then transfer to rack. Enjoy!</li></ol></div>
-            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Baker's Tip:</strong> Chill dough for 30 minutes for extra chewy cookies. Brown butter adds deep caramel notes!</div>
-            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
-        </div>
-    </div>
-</div>
+<div id="noodleModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div><div class="modal-body"><img src="NOodle n.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?noodles'"><div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak<br>2 tbsp butter<br>1 onion<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Sear steak, set aside</li><li>Sauté onion in butter</li><li>Add steak, stock, simmer 50 min</li><li>Add peas, thicken</li><li>Serve over noodles</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Low and slow makes steak tender!</div></div></div></div>
 
-<div id="emptySearchMessage" style="display: none;" class="no-recipes-message"><i class="fas fa-search-minus"></i> No recipes match your search.</div>
+<div id="cookieModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div><div class="modal-body"><img src="cookie.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?cookies'"><div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Brown butter</li><li>Mix with sugars</li><li>Add egg, vanilla</li><li>Add flour, chips</li><li>Bake 10-12 min at 350°F</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Chill dough for chewier cookies!</div></div></div></div>
 
 <script>
-// ========== MODAL FUNCTIONALITY FOR ALL RECIPES ==========
-const modals = {
-    sweetChickenModal: document.getElementById('sweetChickenModal'),
-    noodleModal: document.getElementById('noodleModal'),
-    cookieModal: document.getElementById('cookieModal')
+// Recipe database
+const recipeDB = {
+    'sweet-chicken': { name: 'Sweet Chicken Recipe', desc: 'Honey glazed chicken with soy sauce. Ready in 20 min!', icon: 'fa-drumstick-bite', sectionId: 'recipe-sweet-chicken' },
+    'noodles': { name: 'Hearty Noodle Recipe', desc: 'Slow-simmered beef with egg noodles in rich broth.', icon: 'fa-utensil-spoon', sectionId: 'recipe-noodles' },
+    'cookies': { name: 'Chocolate Chip Cookies', desc: 'Brown butter cookies with crispy edges and chewy centers.', icon: 'fa-cookie-bite', sectionId: 'recipe-cookies' }
 };
 
-function openModal(modalId) {
-    if (modals[modalId]) {
-        modals[modalId].classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeModal(modalId) {
-    if (modals[modalId]) {
-        modals[modalId].classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
-
-// Open modal buttons
-document.querySelectorAll('.open-recipe-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const modalId = btn.getAttribute('data-modal');
-        if (modalId) openModal(modalId);
-    });
-});
-
-// Clickable images
-const sweetChickenLocalImg = document.querySelector('#recipe-sweet-chicken img');
-if (sweetChickenLocalImg) sweetChickenLocalImg.addEventListener('click', () => openModal('sweetChickenModal'));
-const noodleLocalImg = document.querySelector('#recipe-noodles img');
-if (noodleLocalImg) noodleLocalImg.addEventListener('click', () => openModal('noodleModal'));
-const cookieLocalImg = document.querySelector('#recipe-cookies img');
-if (cookieLocalImg) cookieLocalImg.addEventListener('click', () => openModal('cookieModal'));
-
-// Close modal buttons
-document.querySelectorAll('.close-modal').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const modalId = btn.getAttribute('data-modal');
-        if (modalId) closeModal(modalId);
-    });
-});
-
-// Close modal when clicking outside content
-Object.keys(modals).forEach(modalId => {
-    const modal = modals[modalId];
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal(modalId);
-        });
-    }
-});
-
-// Escape key to close any open modal
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        Object.keys(modals).forEach(modalId => {
-            if (modals[modalId]?.classList.contains('active')) closeModal(modalId);
-        });
-    }
-});
-
-// ========== SAVE RECIPE FUNCTIONALITY ==========
 let savedRecipes = JSON.parse(localStorage.getItem('letsEat_savedRecipes')) || [];
 
 function updateSaveButtons() {
     document.querySelectorAll('.recipe-save-btn').forEach(btn => {
-        const recipeId = btn.getAttribute('data-recipe');
-        if (savedRecipes.includes(recipeId)) {
+        const id = btn.getAttribute('data-recipe');
+        if (savedRecipes.includes(id)) {
             btn.innerHTML = '<i class="fas fa-check-circle"></i> Saved!';
             btn.classList.add('saved');
         } else {
@@ -695,21 +550,73 @@ function updateSaveButtons() {
             btn.classList.remove('saved');
         }
     });
-    const badge = document.getElementById('savedCountBadge');
-    if (badge) badge.innerText = savedRecipes.length;
+    document.getElementById('savedCountBadge').innerText = savedRecipes.length;
 }
 
-function saveRecipe(recipeId, recipeName) {
-    if (!savedRecipes.includes(recipeId)) {
-        savedRecipes.push(recipeId);
+function saveRecipe(id, name) {
+    if (!savedRecipes.includes(id)) {
+        savedRecipes.push(id);
         localStorage.setItem('letsEat_savedRecipes', JSON.stringify(savedRecipes));
         updateSaveButtons();
-        showToast(`✅ "${recipeName}" saved to your collection!`);
+        renderSavedPage();
+        showToast(`✅ "${name}" saved!`);
         return true;
     } else {
-        showToast(`📌 "${recipeName}" is already saved`);
+        showToast(`📌 "${name}" already saved`);
         return false;
     }
+}
+
+function removeSavedRecipe(id) {
+    savedRecipes = savedRecipes.filter(r => r !== id);
+    localStorage.setItem('letsEat_savedRecipes', JSON.stringify(savedRecipes));
+    updateSaveButtons();
+    renderSavedPage();
+    showToast(`🗑️ Recipe removed`);
+}
+
+function renderSavedPage() {
+    const container = document.getElementById('savedRecipesFullList');
+    if (savedRecipes.length === 0) {
+        container.innerHTML = `<div class="empty-saved-page"><i class="far fa-bookmark"></i><h3>No saved recipes yet</h3><p>Click "Save Recipe" on any recipe to add it here!</p></div>`;
+        return;
+    }
+    container.innerHTML = savedRecipes.map(id => {
+        const r = recipeDB[id];
+        if (!r) return '';
+        return `<div class="saved-recipe-card"><div class="saved-recipe-img"><i class="fas ${r.icon}" style="font-size: 4rem;"></i></div><div class="saved-recipe-info"><h3>${r.name}</h3><p>${r.desc}</p><button class="view-recipe-btn" data-id="${id}"><i class="fas fa-eye"></i> View Recipe</button><button class="remove-saved-btn" data-id="${id}"><i class="fas fa-trash-alt"></i> Remove</button></div></div>`;
+    }).join('');
+    
+    document.querySelectorAll('.view-recipe-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            const recipe = recipeDB[id];
+            if (recipe) {
+                showHomePage();
+                setTimeout(() => {
+                    document.getElementById(recipe.sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+                showToast(`📖 Opening ${recipe.name}`);
+            }
+        });
+    });
+    document.querySelectorAll('.remove-saved-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            removeSavedRecipe(btn.getAttribute('data-id'));
+        });
+    });
+}
+
+function showSavedPage() {
+    document.getElementById('mainContent').classList.add('hide');
+    document.getElementById('savedPage').classList.add('active');
+    renderSavedPage();
+}
+
+function showHomePage() {
+    document.getElementById('mainContent').classList.remove('hide');
+    document.getElementById('savedPage').classList.remove('active');
 }
 
 function showToast(msg) {
@@ -720,80 +627,68 @@ function showToast(msg) {
     setTimeout(() => t.remove(), 2200);
 }
 
-// Attach save events to all save buttons
+// Event Listeners
 document.querySelectorAll('.recipe-save-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
-        const id = btn.getAttribute('data-recipe');
-        const name = btn.getAttribute('data-name');
-        if (id && name) saveRecipe(id, name);
+        saveRecipe(btn.getAttribute('data-recipe'), btn.getAttribute('data-name'));
     });
 });
+document.getElementById('savedPageBtn')?.addEventListener('click', showSavedPage);
+document.getElementById('backToHomeBtn')?.addEventListener('click', showHomePage);
+document.getElementById('homeBtn')?.addEventListener('click', showHomePage);
 
-updateSaveButtons();
+// Modal functionality
+const modals = { sweetChickenModal: document.getElementById('sweetChickenModal'), noodleModal: document.getElementById('noodleModal'), cookieModal: document.getElementById('cookieModal') };
+function openModal(id) { if (modals[id]) { modals[id].classList.add('active'); document.body.style.overflow = 'hidden'; } }
+function closeModal(id) { if (modals[id]) { modals[id].classList.remove('active'); document.body.style.overflow = ''; } }
+document.querySelectorAll('.open-recipe-btn').forEach(btn => btn.addEventListener('click', () => openModal(btn.getAttribute('data-modal'))));
+document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', () => closeModal(btn.getAttribute('data-modal'))));
+document.querySelectorAll('.recipe img').forEach((img, idx) => { img.addEventListener('click', () => { const modalsList = ['sweetChickenModal', 'noodleModal', 'cookieModal']; openModal(modalsList[idx]); }); });
+Object.keys(modals).forEach(id => { modals[id]?.addEventListener('click', (e) => { if (e.target === modals[id]) closeModal(id); }); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') Object.keys(modals).forEach(id => { if (modals[id]?.classList.contains('active')) closeModal(id); }); });
 
-// ========== HEART BUTTON ==========
+// Heart button
 (function() {
-    const heartBtn = document.getElementById('heartBtn');
-    let heartActive = localStorage.getItem('letsEat_heartActive') === 'true';
-    function updateHeartButton() {
-        if (heartActive) {
-            heartBtn.innerHTML = '<i class="fas fa-heart"></i>';
-            heartBtn.classList.add('active-heart');
-        } else {
-            heartBtn.innerHTML = '<i class="far fa-heart"></i>';
-            heartBtn.classList.remove('active-heart');
-        }
-    }
-    updateHeartButton();
-    heartBtn.addEventListener('click', () => {
-        heartActive = !heartActive;
-        localStorage.setItem('letsEat_heartActive', heartActive);
-        updateHeartButton();
-        showToast(heartActive ? '❤️ You love this site! Thank you! ❤️' : '💔 Heart removed');
-    });
+    const heart = document.getElementById('heartBtn');
+    let active = localStorage.getItem('letsEat_heartActive') === 'true';
+    function update() { heart.innerHTML = active ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'; heart.style.color = active ? '#ff6b6b' : '#f7e3b2'; }
+    update();
+    heart.addEventListener('click', () => { active = !active; localStorage.setItem('letsEat_heartActive', active); update(); showToast(active ? '❤️ You love this site!' : '💔 Heart removed'); });
 })();
 
-// ========== SEARCH BAR ==========
+// Search
 (function() {
-    const searchInput = document.getElementById('headerSearchInput'), clearBtn = document.getElementById('searchClearBtn'), dropdown = document.getElementById('searchDropdown'), sections = document.querySelectorAll('.recipe-card'), emptyMsg = document.getElementById('emptySearchMessage');
-    function getMeta() { let arr = []; sections.forEach(s => { let name = s.querySelector('h2')?.innerText || ''; let text = (s.querySelector('.detailed-steps')?.innerText || '').toLowerCase(); arr.push({ id: s.id, name, fullText: (name + ' ' + text).toLowerCase() }); }); return arr; }
+    const input = document.getElementById('headerSearchInput'), clear = document.getElementById('searchClearBtn'), dropdown = document.getElementById('searchDropdown'), sections = document.querySelectorAll('.recipe-card');
+    function getMeta() { return Array.from(sections).map(s => ({ id: s.id, name: s.querySelector('h2')?.innerText || '', text: (s.querySelector('.detailed-steps')?.innerText || '').toLowerCase() })); }
     let db = getMeta();
-    function filter(q) { let lq = q.trim().toLowerCase(), visible = false; if (!lq) { sections.forEach(s => s.style.display = ""); emptyMsg && (emptyMsg.style.display = "none"); return db; } let matched = db.filter(r => r.fullText.includes(lq)), ids = new Set(matched.map(r => r.id)); sections.forEach(s => { if (ids.has(s.id)) { s.style.display = ""; visible = true; } else s.style.display = "none"; }); emptyMsg && (emptyMsg.style.display = visible ? "none" : "block"); return matched; }
-    function updateDropdown(matched, term) { if (!dropdown) return; if (!term.trim()) { dropdown.classList.remove('active'); return; } if (!matched.length) { dropdown.innerHTML = '<div class="no-results">No recipes found</div>'; dropdown.classList.add('active'); return; } let html = matched.slice(0,5).map(r => `<div class="result-item" data-id="${r.id}"><div class="result-icon"><i class="fas fa-utensils"></i></div><div class="result-info"><div class="result-title">${r.name}</div></div></div>`).join(''); dropdown.innerHTML = html; dropdown.classList.add('active'); document.querySelectorAll('.result-item').forEach(el => { el.addEventListener('click', () => { let id = el.dataset.id, recipe = db.find(r => r.id === id); if (recipe) { searchInput.value = recipe.name; performSearch(recipe.name); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); hideDropdown(); } }); }); }
-    function hideDropdown() { dropdown?.classList.remove('active'); }
-    function performSearch(q) { let matched = filter(q); updateDropdown(matched, q); if (clearBtn) clearBtn.style.display = q.trim() ? 'flex' : 'none'; }
-    searchInput?.addEventListener('input', e => performSearch(e.target.value));
-    clearBtn?.addEventListener('click', () => { searchInput.value = ''; performSearch(''); searchInput.focus(); hideDropdown(); });
-    document.addEventListener('click', e => { if (!searchInput?.contains(e.target) && !dropdown?.contains(e.target) && !clearBtn?.contains(e.target)) hideDropdown(); });
+    function filter(q) { let lq = q.trim().toLowerCase(); if (!lq) { sections.forEach(s => s.style.display = ""); return db; } let matched = db.filter(r => r.name.toLowerCase().includes(lq) || r.text.includes(lq)); let ids = new Set(matched.map(r => r.id)); sections.forEach(s => s.style.display = ids.has(s.id) ? "" : "none"); return matched; }
+    function updateDropdown(matched, term) { if (!term.trim()) { dropdown.classList.remove('active'); return; } if (!matched.length) { dropdown.innerHTML = '<div class="no-results">No recipes found</div>'; dropdown.classList.add('active'); return; } dropdown.innerHTML = matched.slice(0,5).map(r => `<div class="result-item" data-id="${r.id}"><div class="result-icon"><i class="fas fa-utensils"></i></div><div class="result-info"><div class="result-title">${r.name}</div></div></div>`).join(''); dropdown.classList.add('active'); document.querySelectorAll('.result-item').forEach(el => { el.addEventListener('click', () => { let id = el.dataset.id; let recipe = db.find(r => r.id === id); if (recipe) { input.value = recipe.name; performSearch(recipe.name); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); hideDropdown(); } }); }); }
+    function hideDropdown() { dropdown.classList.remove('active'); }
+    function performSearch(q) { let matched = filter(q); updateDropdown(matched, q); clear.style.display = q.trim() ? 'flex' : 'none'; }
+    input.addEventListener('input', e => performSearch(e.target.value));
+    clear.addEventListener('click', () => { input.value = ''; performSearch(''); input.focus(); hideDropdown(); });
+    document.addEventListener('click', e => { if (!input.contains(e.target) && !dropdown.contains(e.target)) hideDropdown(); });
     performSearch('');
 })();
 
-// ========== CHECKLIST PROGRESS ==========
-const checklistItems = document.querySelectorAll('#mealPrepChecklist .checklist-item');
-const progMsg = document.getElementById('prepProgressMsg');
-function updateProgress() { let total = checklistItems.length, comp = 0; checklistItems.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); if (progMsg) progMsg.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task!`; }
-checklistItems.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('click', () => { let icon = i.querySelector('i'); if (icon.classList.contains('fa-square')) { icon.classList.remove('fa-square'); icon.classList.add('fa-check-square'); } else { icon.classList.remove('fa-check-square'); icon.classList.add('fa-square'); } updateProgress(); }); }); updateProgress();
+// Checklist
+const items = document.querySelectorAll('#mealPrepChecklist .checklist-item');
+const prog = document.getElementById('prepProgressMsg');
+function updateProgress() { let total = items.length, comp = 0; items.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); prog.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task!`; }
+items.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('click', () => { let icon = i.querySelector('i'); if (icon.classList.contains('fa-square')) { icon.classList.remove('fa-square'); icon.classList.add('fa-check-square'); } else { icon.classList.remove('fa-check-square'); icon.classList.add('fa-square'); } updateProgress(); }); }); updateProgress();
 
-// ========== RATING STARS ==========
+// Rating stars
 (function() {
-    const stars = document.querySelectorAll('#clickableStars i'), feedback = document.getElementById('starFeedback'), resetBtn = document.getElementById('resetRatingsBtn');
+    const stars = document.querySelectorAll('#clickableStars i'), feedback = document.getElementById('starFeedback'), reset = document.getElementById('resetRatingsBtn');
     let current = parseInt(localStorage.getItem('letsEat_userRating')) || 0;
     function highlight(r) { stars.forEach(s => { let val = parseInt(s.dataset.rating); if (val <= r) { s.classList.remove('far'); s.classList.add('fas', 'active'); } else { s.classList.remove('fas', 'active'); s.classList.add('far'); } }); }
-    highlight(current); if (current > 0 && feedback) feedback.innerHTML = `🙏 You rated ${current} stars! Thank you.`;
-    stars.forEach(s => { s.addEventListener('click', function() { let val = parseInt(this.dataset.rating); if (current === val) return; current = val; localStorage.setItem('letsEat_userRating', current); highlight(current); if (feedback) feedback.innerHTML = `🎉 Thank you for your ${current}-star review! 🎉`; showToast(`You rated ${current} stars!`); }); s.addEventListener('mouseenter', function() { let val = parseInt(this.dataset.rating); stars.forEach(star => { let sv = parseInt(star.dataset.rating); if (sv <= val) { star.classList.remove('far'); star.classList.add('fas'); } else { star.classList.remove('fas'); star.classList.add('far'); } }); }); s.addEventListener('mouseleave', () => highlight(current)); });
-    if (resetBtn) resetBtn.addEventListener('click', () => { current = 0; localStorage.setItem('letsEat_userRating', 0); highlight(0); if (feedback) feedback.innerHTML = `⭐ Click a star to rate again! ⭐`; showToast(`Rating reset`); });
+    highlight(current); if (current > 0) feedback.innerHTML = `🙏 You rated ${current} stars! Thank you.`;
+    stars.forEach(s => { s.addEventListener('click', function() { let val = parseInt(this.dataset.rating); if (current === val) return; current = val; localStorage.setItem('letsEat_userRating', current); highlight(current); feedback.innerHTML = `🎉 Thank you for your ${current}-star review! 🎉`; showToast(`You rated ${current} stars!`); }); s.addEventListener('mouseenter', function() { let val = parseInt(this.dataset.rating); stars.forEach(star => { let sv = parseInt(star.dataset.rating); if (sv <= val) { star.classList.remove('far'); star.classList.add('fas'); } else { star.classList.remove('fas'); star.classList.add('far'); } }); }); s.addEventListener('mouseleave', () => highlight(current)); });
+    reset.addEventListener('click', () => { current = 0; localStorage.setItem('letsEat_userRating', 0); highlight(0); feedback.innerHTML = `⭐ Click a star to rate again! ⭐`; showToast(`Rating reset`); });
 })();
 
-// Saved page button
-document.getElementById('savedPageBtn')?.addEventListener('click', () => {
-    if (savedRecipes.length === 0) {
-        showToast('💡 No saved recipes yet. Click "Save Recipe" on any recipe!');
-    } else {
-        showToast(`📚 You have ${savedRecipes.length} saved recipe(s)!`);
-    }
-});
+updateSaveButtons();
 </script>
 </body>
 </html>
