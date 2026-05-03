@@ -207,7 +207,7 @@ body::before {
 }
 
 /* ========== ALL TEXT CRYSTAL CLEAR & VISIBLE ========== */
-body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li, .day-card p, .progress-text, .saved-recipe-info p, .empty-saved-page p, .modal-steps li, .modal-note, .result-title, .no-results {
+body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li, .day-card p, .progress-text, .saved-recipe-info p, .empty-saved-page p, .result-title, .no-results {
     color: #ffefcf !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     font-weight: 500;
@@ -715,7 +715,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 .empty-saved-page i { font-size: 4rem; color: #e9bc7d; margin-bottom: 20px; }
 .empty-saved-page h3, .empty-saved-page p { color: #ffefcf !important; }
 
-/* Modal styles */
+/* ========== MODAL STYLES - FIXED FOR VISIBILITY ========== */
 .recipe-modal {
     display: none;
     position: fixed;
@@ -723,7 +723,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(0, 0, 0, 0.92);
     z-index: 1000;
     overflow-y: auto;
     padding: 40px 20px;
@@ -732,10 +732,11 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 .modal-content {
     max-width: 900px;
     margin: 0 auto;
-    background: #fdf3e2;
+    background: #fef8ef;
     border-radius: 48px;
     overflow: hidden;
     animation: modalFadeIn 0.3s ease;
+    border: 2px solid #e9bc7d;
 }
 @keyframes modalFadeIn {
     from { opacity: 0; transform: translateY(30px); }
@@ -749,63 +750,113 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     align-items: center;
     border-bottom: 3px solid #e9bc7d;
 }
-.modal-header h2 { color: #f7e3b2; margin: 0; }
+.modal-header h2 {
+    color: #f7e3b2 !important;
+    margin: 0;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
 .close-modal {
     background: none;
     border: none;
     color: #e9bc7d;
     font-size: 2rem;
     cursor: pointer;
+    transition: transform 0.2s;
 }
-.close-modal:hover { color: #ffcd7e; }
-.modal-body { padding: 30px; }
+.close-modal:hover {
+    transform: scale(1.1);
+    color: #ffcd7e;
+}
+.modal-body {
+    padding: 30px;
+}
 .modal-recipe-img {
     width: 100%;
     height: 300px;
     object-fit: cover;
     border-radius: 24px;
     margin-bottom: 25px;
+    border: 2px solid #e9bc7d;
 }
+/* Modal Ingredients - Dark text on light background */
 .modal-ingredients, .modal-steps {
     background: #fffaf0;
-    padding: 20px;
-    border-radius: 24px;
+    padding: 22px;
+    border-radius: 28px;
     margin-top: 20px;
+    border: 1px solid #e9bc7d;
 }
 .modal-ingredients h3, .modal-steps h3 {
-    border-left: 5px solid #b5651e;
-    padding-left: 12px;
-    margin-bottom: 15px;
-    color: #4b2e1a;
-}
-.modal-steps ol { margin-left: 20px; line-height: 1.8; }
-.modal-steps li, .modal-ingredients p { color: #2b1b12; text-shadow: none; }
-.modal-note {
-    background: #e9bc7d20;
-    padding: 15px;
-    border-radius: 20px;
-    margin-top: 20px;
-    border-left: 4px solid #b5651e;
-    font-style: italic;
-    color: #2b1b12;
+    border-left: 6px solid #b5651e;
+    padding-left: 16px;
+    margin-bottom: 18px;
+    color: #4b2e1a !important;
+    font-size: 1.4rem;
+    font-weight: 800;
     text-shadow: none;
 }
-.step-highlight {
+.modal-ingredients p {
+    color: #2b1b12 !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-shadow: none;
+    font-weight: 500;
+}
+.modal-steps ol {
+    margin-left: 22px;
+    line-height: 1.8;
+}
+.modal-steps li {
+    color: #2b1b12 !important;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    text-shadow: none;
+    font-weight: 500;
+}
+.modal-note {
+    background: #e9bc7d25;
+    padding: 18px;
+    border-radius: 24px;
+    margin-top: 22px;
+    border-left: 5px solid #b5651e;
+    font-style: italic;
+    color: #2b1b12 !important;
+    text-shadow: none;
+    font-weight: 500;
+}
+.modal-note i {
+    color: #b5651e;
+    margin-right: 8px;
+}
+.modal-note strong {
+    color: #2b1b12;
+}
+
+/* Save button inside modal */
+.recipe-modal .recipe-save-btn {
+    background: #e9bc7d !important;
+    color: #2b1b12 !important;
+    border: 2px solid #c9973a !important;
+    padding: 0.6rem 1.3rem !important;
+    border-radius: 50px !important;
+    font-size: 0.9rem !important;
+    font-weight: 800 !important;
+    text-shadow: none;
+}
+.recipe-modal .recipe-save-btn:hover {
+    background: #d6a05e !important;
+    transform: translateY(-2px);
+}
+
+/* Step highlight in modals */
+.modal-steps .step-highlight {
     background: #e9bc7d80;
     padding: 2px 8px;
     border-radius: 20px;
-    color: #2b1b12;
+    color: #2b1b12 !important;
     text-shadow: none;
     font-weight: 800;
-}
-.note-box {
-    background: #e9bc7d40;
-    border-left: 3px solid #e9bc7d;
-    color: #2b1b12;
-    text-shadow: none;
-    padding: 10px 15px;
-    border-radius: 16px;
-    margin-top: 12px;
 }
 
 @media (max-width: 760px) {
@@ -815,6 +866,8 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     .recipe-save-btn, .open-recipe-btn { padding: 0.4rem 0.8rem !important; font-size: 0.7rem !important; }
     .checklist h3 { font-size: 1.3rem; }
     .checklist-item span { font-size: 0.85rem; }
+    .modal-body { padding: 20px; }
+    .modal-recipe-img { height: 200px; }
 }
 </style>
 </head>
@@ -913,7 +966,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
                 <div class="prep-card"><i class="fas fa-temperature-low"></i><h3>Freezer-Friendly Tips</h3><ul><li>Soups, stews, and curries freeze beautifully</li><li>Flash-freeze meatballs, cookie dough</li><li>Use silicone bags for flat freezing</li><li>Always cool food completely before freezing</li></ul></div>
             </div>
             
-            <!-- SUNDAY PREP CHECKLIST - HIGHLY VISIBLE -->
+            <!-- SUNDAY PREP CHECKLIST -->
             <div class="checklist" id="mealPrepChecklist">
                 <h3><i class="fas fa-check-circle"></i> Sunday Prep Checklist</h3>
                 <div class="checklist-grid">
@@ -933,7 +986,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
         </div>
     </section>
 
-    <!-- Footer with Review ONLY (everything after review and email removed) -->
+    <!-- Footer with Review -->
     <section class="footer wave-bg">
         <div class="container">
             <div class="review-container">
@@ -961,12 +1014,45 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     </div>
 </div>
 
-<!-- MODALS (Full Recipe Details) -->
-<div id="sweetChickenModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div><div class="modal-body"><img src="chicken S.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'"><div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 chicken breasts</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Whisk honey, soy, pepper flakes</li><li>Heat oil, cook chicken until browned</li><li>Add sauce, cook until thickened</li><li>Serve hot</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Tip: Marinate chicken for extra flavor!</div></div></div></div>
+<!-- MODALS (Full Recipe Details) - ALL TEXT NOW VISIBLE -->
+<div id="sweetChickenModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div>
+        <div class="modal-body">
+            <img src="chicken S.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'">
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (cut into bite-sized pieces)</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts.</li><li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside.</li><li><span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).</li><li><span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).</li><li><span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Enjoy your homemade sweet chicken!</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Tip:</strong> For extra flavor, marinate chicken in soy sauce for 15 minutes before cooking.</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+        </div>
+    </div>
+</div>
 
-<div id="noodleModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div><div class="modal-body"><img src="NOodle n.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?noodles'"><div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak<br>2 tbsp butter<br>1 onion<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Sear steak, set aside</li><li>Sauté onion in butter</li><li>Add steak, stock, simmer 50 min</li><li>Add peas, thicken</li><li>Serve over noodles</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Low and slow makes steak tender!</div></div></div></div>
+<div id="noodleModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2><i class="fas fa-utensil-spoon"></i> Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div>
+        <div class="modal-body">
+            <img src="NOodle n.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?beef+noodles+stew'">
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak (cubed into 1-inch pieces)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch mixed with 2 tbsp water (slurry)<br>2 bay leaves<br>1 tsp dried thyme<br>Salt and pepper to taste</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Heat a skillet over medium-high heat</span>; cook steak in batches (to avoid overcrowding) until seared and browned on all sides, about 5 minutes. Transfer seared steak to a plate.</li><li><span class="step-highlight">Melt butter</span> in the same skillet over medium heat and sauté onion until softened, 5 to 10 minutes.</li><li><span class="step-highlight">Add steak back to the skillet</span> with the onion. Pour in beef stock and season with bay leaves, thyme, salt, and pepper.</li><li><span class="step-highlight">Bring to a boil</span>; then reduce heat to low, cover, and simmer until steak is tender, about 50 minutes.</li><li><span class="step-highlight">Stir peas and cornstarch slurry</span> into the steak mixture; cook uncovered until the liquid thickens, about 10 minutes. Remove bay leaves.</li><li>Meanwhile, <span class="step-highlight">bring a large pot of lightly salted water to a boil</span>. Cook egg noodles in the boiling water, stirring occasionally, until al dente (about 5 minutes); drain well.</li><li><span class="step-highlight">Serve beef mixture over noodles</span> in deep bowls, spooning extra gravy on top. Garnish with fresh herbs if desired.</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes the steak incredibly tender. For deeper flavor, deglaze the skillet with a splash of red wine before adding stock.</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+        </div>
+    </div>
+</div>
 
-<div id="cookieModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div><div class="modal-body"><img src="cookie.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?cookies'"><div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Brown butter</li><li>Mix with sugars</li><li>Add egg, vanilla</li><li>Add flour, chips</li><li>Bake 10-12 min at 350°F</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Chill dough for chewier cookies!</div></div></div></div>
+<div id="cookieModal" class="recipe-modal">
+    <div class="modal-content">
+        <div class="modal-header"><h2><i class="fas fa-cookie-bite"></i> Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div>
+        <div class="modal-body">
+            <img src="cookie.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chocolate+cookies+batch'">
+            <div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups all-purpose flour<br>1 cup chocolate chips<br>Sea salt for sprinkling</p></div>
+            <div class="modal-steps"><h3>Step-by-Step Brown Butter Method</h3><ol><li><span class="step-highlight">Preheat the oven to 350ºF (175°C)</span>. Line a baking sheet with parchment paper.</li><li><span class="step-highlight">In a pot, melt and carefully brown the butter</span> over medium heat. Stir continuously until it turns amber and smells nutty (about 3-5 minutes). Remove from heat.</li><li><span class="step-highlight">Let brown butter cool until warm to the touch</span> (about 5-10 minutes). Then add the white and brown sugar, mixing until fully incorporated.</li><li><span class="step-highlight">Add 1 egg at room temperature</span> and mix again until smooth and glossy.</li><li><span class="step-highlight">Add the vanilla and salt</span> onto the mixture. Then add the baking soda into the pool of vanilla before mixing it all well.</li><li><span class="step-highlight">Once the cookie mixture has a ribbon-like consistency</span>, add the flour and chocolate chips, then mix gently until just combined.</li><li><span class="step-highlight">Once there are no more specks of flour</span> around the batter, scoop into round dough balls (about 1.5 tbsp each) on the parchment-lined baking sheet, spacing 2 inches apart.</li><li><span class="step-highlight">Sprinkle with sea salt</span> and bake for 10-12 minutes, until edges are golden brown but centers are still soft.</li><li><span class="step-highlight">Let sit and cool for 8-10 minutes</span> on the baking sheet (they will continue to set). Then transfer to a wire rack and enjoy!</li></ol></div>
+            <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Baker's Tip:</strong> Brown butter adds deep caramel notes. For extra chewy cookies, chill the dough for 30 minutes before baking.</div>
+            <div style="text-align:center; margin-top:20px;"><button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save This Recipe</button></div>
+        </div>
+    </div>
+</div>
 
 <script>
 // FLYING FOOD TRANSITION
@@ -1119,7 +1205,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') Object.key
     performSearch('');
 })();
 
-// Checklist - Sunday Prep Checklist
+// Checklist
 const items = document.querySelectorAll('#mealPrepChecklist .checklist-item');
 const prog = document.getElementById('prepProgressMsg');
 function updateProgress() { let total = items.length, comp = 0; items.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); prog.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task to track your prep!`; }
