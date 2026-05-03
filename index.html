@@ -114,11 +114,11 @@ body::before {
 }
 
 /* ========== UNIFIED BLACK/BROWN TEXT COLORS ========== */
-body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .prep-card p, .prep-card li, .day-card p, .tip-item, .checklist-item span, .progress-text, .pro-tip-box p, .rating-feedback, .saved-recipe-info p, .empty-saved-page p, .modal-steps li, .modal-note, .result-title, .no-results, .brand span {
+body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .prep-card p, .prep-card li, .day-card p, .tip-item, .checklist-item span, .progress-text, .pro-tip-box p, .rating-feedback, .saved-recipe-info p, .empty-saved-page p, .modal-steps li, .modal-note, .result-title, .no-results {
     color: #2b1b12 !important;
 }
 
-/* Header specific text - keep brand lighter but readable */
+/* Brand specific */
 .brand span {
     background: linear-gradient(135deg, #f7e3b2, #e9bc7d);
     background-clip: text;
@@ -129,7 +129,7 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     color: #e9bc7d !important;
 }
 
-/* Search input text */
+/* Search input */
 .search-input {
     color: #2b1b12 !important;
 }
@@ -137,7 +137,7 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     color: #6b4a35 !important;
 }
 
-/* Icon buttons - keep icons visible */
+/* Icon buttons */
 .icon-btn {
     color: #f7e3b2 !important;
 }
@@ -148,23 +148,39 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     color: #ff6b6b !important;
 }
 
-/* Recipe save button text */
-.recipe-save-btn {
+/* Button styles - UNIFIED for both Save and View Full Recipe */
+.recipe-save-btn, .open-recipe-btn {
+    background: #2b1b12;
     color: #f7e3b2 !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
 }
-.recipe-save-btn:hover {
+.recipe-save-btn:hover, .open-recipe-btn:hover {
+    background: #b5651e;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     color: white !important;
 }
 .recipe-save-btn.saved {
+    background: #b5651e;
     color: white !important;
 }
 
-/* Modal headers */
+/* Modal header */
 .modal-header h2 {
     color: #f7e3b2 !important;
 }
-
-/* Close modal button */
 .close-modal {
     color: #e9bc7d !important;
 }
@@ -182,18 +198,22 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
 .rating-stars i:hover {
     color: #ffcd7e !important;
 }
-
-/* Reset rating button */
 .reset-rating {
     color: #f7e3b2 !important;
     border-color: #e9bc7d !important;
+    background: none;
+    border: 1px solid;
+    padding: 5px 15px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 .reset-rating:hover {
     color: #2b1b12 !important;
     background: #e9bc7d !important;
 }
 
-/* Adjust header */
+/* Header */
 .main-header {
     background-color: rgba(43, 27, 18, 0.92);
     padding: 1rem 2rem;
@@ -205,7 +225,6 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     backdrop-filter: blur(5px);
 }
 
-/* Make recipe cards slightly more opaque for readability */
 .recipe-card .container .recipe-content .ingredients,
 .recipe-card .container .recipe-content .detailed-steps {
     background: rgba(253, 243, 226, 0.95);
@@ -214,31 +233,24 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
 .hero {
     background: rgba(199, 166, 124, 0.85);
 }
-
 .meal-prep-section {
     background: linear-gradient(135deg, rgba(90, 62, 40, 0.92) 0%, rgba(61, 42, 27, 0.92) 100%);
 }
-
 .wave-bg {
     background: linear-gradient(to bottom, rgba(199, 166, 124, 0.85) 50%, rgba(107, 74, 53, 0.85) 50%);
 }
-
 .footer .review-container {
     background: rgba(43, 27, 18, 0.7);
 }
-
 .saved-section {
     background: rgba(61, 42, 27, 0.92);
 }
-
 .checklist {
     background: rgba(255, 247, 237, 0.95);
 }
-
 .prep-card {
     background: rgba(255, 250, 240, 0.95);
 }
-
 .pro-tip-box {
     background: rgba(255, 242, 226, 0.95);
 }
@@ -277,15 +289,6 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     align-items: center;
     border-bottom: 3px solid #e9bc7d;
 }
-.modal-header h2 { margin: 0; }
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.close-modal:hover { transform: scale(1.1); }
 .modal-body { padding: 30px; }
 .modal-recipe-img {
     width: 100%;
@@ -306,7 +309,6 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     margin-bottom: 15px;
 }
 .modal-steps ol { margin-left: 20px; line-height: 1.8; }
-.modal-steps li { margin-bottom: 12px; }
 .modal-note {
     background: #e9bc7d20;
     padding: 15px;
@@ -342,6 +344,7 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
 }
 .back-to-home {
     background: #2b1b12;
+    color: #f7e3b2 !important;
     border: none;
     padding: 10px 24px;
     border-radius: 40px;
@@ -351,8 +354,9 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     align-items: center;
     gap: 8px;
     margin-top: 15px;
+    transition: all 0.3s ease;
 }
-.back-to-home:hover { background: #b5651e; transform: translateY(-2px); }
+.back-to-home:hover { background: #b5651e; transform: translateY(-2px); color: white !important; }
 .saved-recipes-full {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -375,7 +379,6 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     align-items: center;
     justify-content: center;
     font-size: 3.5rem;
-    color: #2b1b12;
 }
 .saved-recipe-info { padding: 20px; }
 .saved-recipe-info h3 { margin-bottom: 10px; }
@@ -391,10 +394,12 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
 }
 .view-recipe-btn {
     background: #2b1b12;
+    color: #f7e3b2 !important;
 }
-.view-recipe-btn:hover { background: #b5651e; transform: translateY(-2px); }
+.view-recipe-btn:hover { background: #b5651e; transform: translateY(-2px); color: white !important; }
 .remove-saved-btn {
     background: #8b3c1c;
+    color: white !important;
 }
 .remove-saved-btn:hover { background: #a04020; transform: translateY(-2px); }
 .empty-saved-page {
@@ -407,7 +412,7 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
 }
 .empty-saved-page i { font-size: 4rem; color: #b5651e; margin-bottom: 20px; }
 
-/* Header */
+/* Header Container */
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -507,23 +512,6 @@ body, p, h1, h2, h3, h4, span, div, li, .quote, .step-highlight, .note-box, .pre
     padding: 2px 6px;
 }
 
-/* Recipe Save Button */
-.recipe-save-btn {
-    background: #2b1b12;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 40px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-.recipe-save-btn:hover { background: #b5651e; transform: translateY(-2px); }
-.recipe-save-btn.saved { background: #b5651e; }
-
 /* Recipe Layout */
 section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 .container { max-width: 1100px; margin: auto; }
@@ -565,26 +553,18 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 .rating-stars { display: flex; justify-content: center; gap: 18px; margin: 20px 0; }
 .rating-stars i { font-size: 52px; cursor: pointer; transition: transform 0.2s; }
 .rating-stars i:hover { transform: scale(1.2); }
-.reset-rating { background: none; border: 1px solid; padding: 5px 15px; border-radius: 40px; cursor: pointer; transition: all 0.2s; }
-
-/* View recipe button and remove button text colors */
-.view-recipe-btn, .remove-saved-btn, .back-to-home, .recipe-save-btn {
-    color: #f7e3b2 !important;
-}
-.view-recipe-btn:hover, .remove-saved-btn:hover, .back-to-home:hover, .recipe-save-btn:hover {
-    color: white !important;
-}
 
 @media (max-width: 760px) {
     .header-container { flex-direction: column; align-items: stretch; }
     .hero h1 { font-size: 42px; }
     .rating-stars i { font-size: 38px; }
+    .recipe-save-btn, .open-recipe-btn { margin-right: 5px; padding: 0.4rem 0.8rem; font-size: 0.7rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- FLYING FOOD TRANSITION (very short animation) -->
+<!-- FLYING FOOD TRANSITION -->
 <div id="foodTransition" class="food-transition"></div>
 
 <header class="main-header">
@@ -608,7 +588,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     </div>
 </header>
 
-<!-- MAIN CONTENT (Home Page) -->
+<!-- MAIN CONTENT -->
 <div id="mainContent" class="main-content">
     <section class="hero"><div class="container"><p class="quote">"First, we eat. Then, we do everything else." – M.F.K. Fisher</p><h1>LET'S EAT!</h1></div></section>
 
@@ -620,8 +600,10 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
                     <h2>Sweet Chicken Recipe</h2>
                     <div class="ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 chicken breasts</p></div>
                     <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Whisk honey, soy, pepper</span></li><li><span class="step-highlight">Cook chicken until browned</span></li><li><span class="step-highlight">Add sauce and thicken</span></li></ol></div>
-                    <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
-                    <button class="open-recipe-btn" data-modal="sweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    <div>
+                        <button class="recipe-save-btn" data-recipe="sweet-chicken" data-name="Sweet Chicken Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                        <button class="open-recipe-btn" data-modal="sweetChickenModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -633,8 +615,10 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
                     <h2>Noodle Recipe</h2>
                     <div class="ingredients"><h3>Ingredients</h3><p>1 lb steak<br>2 tbsp butter<br>1 onion<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup peas<br>1 tbsp cornstarch slurry</p></div>
                     <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Sear steak</span></li><li><span class="step-highlight">Sauté onion</span></li><li><span class="step-highlight">Simmer 50 min</span></li><li><span class="step-highlight">Serve over noodles</span></li></ol></div>
-                    <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
-                    <button class="open-recipe-btn" data-modal="noodleModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    <div>
+                        <button class="recipe-save-btn" data-recipe="noodles" data-name="Hearty Noodle Recipe"><i class="far fa-bookmark"></i> Save Recipe</button>
+                        <button class="open-recipe-btn" data-modal="noodleModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -646,8 +630,10 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
                     <h2>Chocolate Chip Cookies</h2>
                     <div class="ingredients"><h3>Ingredients</h3><p>8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div>
                     <div class="detailed-steps"><h3>Quick Overview</h3><ol><li><span class="step-highlight">Brown butter</span></li><li><span class="step-highlight">Mix with sugars</span></li><li><span class="step-highlight">Add egg and vanilla</span></li><li><span class="step-highlight">Fold in flour and chips</span></li><li><span class="step-highlight">Bake at 350°F</span></li></ol></div>
-                    <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
-                    <button class="open-recipe-btn" data-modal="cookieModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    <div>
+                        <button class="recipe-save-btn" data-recipe="cookies" data-name="Chocolate Chip Cookies"><i class="far fa-bookmark"></i> Save Recipe</button>
+                        <button class="open-recipe-btn" data-modal="cookieModal"><i class="fas fa-external-link-alt"></i> View Full Recipe</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -703,48 +689,30 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 <div id="cookieModal" class="recipe-modal"><div class="modal-content"><div class="modal-header"><h2>Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div><div class="modal-body"><img src="cookie.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?cookies'"><div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips</p></div><div class="modal-steps"><h3>Instructions</h3><ol><li>Brown butter</li><li>Mix with sugars</li><li>Add egg, vanilla</li><li>Add flour, chips</li><li>Bake 10-12 min at 350°F</li></ol></div><div class="modal-note"><i class="fas fa-lightbulb"></i> Chill dough for chewier cookies!</div></div></div></div>
 
 <script>
-// ========== FLYING FOOD TRANSITION ANIMATION ==========
+// ========== FLYING FOOD TRANSITION ==========
 function createFlyingFood() {
     const transitionDiv = document.getElementById('foodTransition');
     const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲'];
     const numItems = 35;
-    
     for (let i = 0; i < numItems; i++) {
         const food = document.createElement('div');
         food.className = 'flying-food';
-        const randomFood = foodIcons[Math.floor(Math.random() * foodIcons.length)];
-        food.innerHTML = randomFood;
-        
-        const startX = Math.random() * window.innerWidth;
-        const startY = Math.random() * window.innerHeight;
-        food.style.left = startX + 'px';
-        food.style.top = startY + 'px';
-        
+        food.innerHTML = foodIcons[Math.floor(Math.random() * foodIcons.length)];
+        food.style.left = Math.random() * window.innerWidth + 'px';
+        food.style.top = Math.random() * window.innerHeight + 'px';
         const tx = (Math.random() - 0.5) * 400;
         const ty = (Math.random() - 0.8) * 300 - 100;
         const rot = (Math.random() - 0.5) * 720;
-        
         food.style.setProperty('--tx', tx + 'px');
         food.style.setProperty('--ty', ty + 'px');
         food.style.setProperty('--rot', rot + 'deg');
-        
-        const duration = 0.6 + Math.random() * 0.4;
-        food.style.animationDuration = duration + 's';
-        
-        const delay = Math.random() * 0.3;
-        food.style.animationDelay = delay + 's';
-        
+        food.style.animationDuration = (0.6 + Math.random() * 0.4) + 's';
+        food.style.animationDelay = Math.random() * 0.3 + 's';
         transitionDiv.appendChild(food);
     }
-    
-    setTimeout(() => {
-        transitionDiv.style.display = 'none';
-    }, 1100);
+    setTimeout(() => { transitionDiv.style.display = 'none'; }, 1100);
 }
-
-window.addEventListener('load', function() {
-    createFlyingFood();
-});
+window.addEventListener('load', function() { createFlyingFood(); });
 
 // Recipe database
 const recipeDB = {
@@ -802,7 +770,6 @@ function renderSavedPage() {
         if (!r) return '';
         return `<div class="saved-recipe-card"><div class="saved-recipe-img"><i class="fas ${r.icon}" style="font-size: 4rem;"></i></div><div class="saved-recipe-info"><h3>${r.name}</h3><p>${r.desc}</p><button class="view-recipe-btn" data-id="${id}"><i class="fas fa-eye"></i> View Recipe</button><button class="remove-saved-btn" data-id="${id}"><i class="fas fa-trash-alt"></i> Remove</button></div></div>`;
     }).join('');
-    
     document.querySelectorAll('.view-recipe-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
