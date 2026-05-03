@@ -16,19 +16,94 @@
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    background-color: #c7a67c;
+    background-image: url('foodie.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: #2b1b12;
+    position: relative;
 }
 
-/* ========== HEADER WITH SEARCH BAR ========== */
+/* Semi-transparent overlay for better text readability */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(199, 166, 124, 0.75);
+    z-index: -2;
+}
+
+/* Ensure all content sections have slight transparency or blend well */
+section, .main-header, .meal-prep-section, .footer, .saved-section, .checklist, .prep-card, .recipe-card .container {
+    backdrop-filter: blur(0px);
+}
+
+/* Adjust header to blend with background */
 .main-header {
-    background-color: #2b1b12;
+    background-color: rgba(43, 27, 18, 0.92);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     border-bottom: 3px solid #e9bc7d;
+}
+
+/* Make recipe cards slightly more opaque for readability */
+.recipe-card .container .recipe-content .ingredients,
+.recipe-card .container .recipe-content .detailed-steps {
+    background: rgba(253, 243, 226, 0.95);
+}
+
+.recipe-card .container .recipe img {
+    border: 2px solid #f3deba;
+    box-shadow: 8px 12px 18px rgba(0,0,0,0.2);
+}
+
+.hero {
+    background: rgba(199, 166, 124, 0.85);
+    background-image: radial-gradient(circle at 10% 30%, rgba(255,235,200,0.4) 2%, transparent 2.5%);
+}
+
+.meal-prep-section {
+    background: linear-gradient(135deg, rgba(90, 62, 40, 0.92) 0%, rgba(61, 42, 27, 0.92) 100%);
+}
+
+.wave-bg {
+    background: linear-gradient(to bottom, rgba(199, 166, 124, 0.85) 50%, rgba(107, 74, 53, 0.85) 50%);
+}
+
+.footer .review-container {
+    background: rgba(43, 27, 18, 0.7);
+}
+
+.saved-section {
+    background: rgba(61, 42, 27, 0.92);
+}
+
+.checklist {
+    background: rgba(255, 247, 237, 0.95);
+}
+
+.prep-card {
+    background: rgba(255, 250, 240, 0.95);
+}
+
+.pro-tip-box {
+    background: rgba(255, 242, 226, 0.95);
+}
+
+/* MODAL background - keep dark but with image influence */
+.recipe-modal {
+    background: rgba(0, 0, 0, 0.88);
+}
+
+.modal-content {
+    background: #fdf3e2;
 }
 
 .header-container {
@@ -89,7 +164,7 @@ body {
     font-family: 'Georgia', serif;
     border: none;
     border-radius: 60px;
-    background-color: #fff6ea;
+    background-color: rgba(255, 246, 234, 0.95);
     border: 1px solid #e2c7a1;
     transition: all 0.2s ease;
     outline: none;
@@ -149,7 +224,7 @@ body {
     align-items: center;
 }
 .icon-btn {
-    background: rgba(255, 245, 225, 0.15);
+    background: rgba(255, 245, 225, 0.2);
     border: none;
     color: #f7e3b2;
     font-size: 1.2rem;
@@ -309,7 +384,7 @@ body {
 section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .container { max-width: 1100px; margin: auto; }
-.hero { text-align: center; background: #c7a67c; background-image: radial-gradient(circle at 10% 30%, rgba(255,235,200,0.4) 2%, transparent 2.5%); }
+.hero { text-align: center; background: rgba(199, 166, 124, 0.85); background-image: radial-gradient(circle at 10% 30%, rgba(255,235,200,0.4) 2%, transparent 2.5%); }
 .hero h1 { font-size: 64px; letter-spacing: 8px; text-shadow: 4px 4px 0 #9b6e48; color: #2b1b12; }
 .quote { font-style: italic; margin-bottom: 30px; font-size: 1.2rem; color: #3a2a1c; }
 
@@ -319,7 +394,7 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .recipe-content { flex: 1; }
 .ingredients, .detailed-steps {
     margin-top: 20px;
-    background: #fdf3e2;
+    background: rgba(253, 243, 226, 0.95);
     padding: 14px 18px;
     border-radius: 20px;
     box-shadow: inset 0 0 0 1px #fff6ea, 0 4px 8px rgba(0,0,0,0.02);
@@ -346,12 +421,12 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
 /* Meal Prep */
 .meal-prep-section {
-    background: linear-gradient(135deg, #5a3e28 0%, #3d2a1b 100%);
+    background: linear-gradient(135deg, rgba(90, 62, 40, 0.92) 0%, rgba(61, 42, 27, 0.92) 100%);
     color: #fef5e8;
 }
 .meal-prep-section h2, .meal-prep-section h3 { color: #ffefcf; border-bottom: 2px solid #e9bc7d; display: inline-block; padding-bottom: 8px; }
 .prep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
-.prep-card { background: #fffaf0; color: #2b1b12; padding: 28px 22px; border-radius: 28px; box-shadow: 0 12px 24px rgba(0,0,0,0.2); transition: transform 0.2s; }
+.prep-card { background: rgba(255, 250, 240, 0.95); color: #2b1b12; padding: 28px 22px; border-radius: 28px; box-shadow: 0 12px 24px rgba(0,0,0,0.2); transition: transform 0.2s; }
 .prep-card:hover { transform: translateY(-6px); }
 .prep-card i { font-size: 2.2rem; color: #b5651e; margin-bottom: 18px; }
 .prep-card h3 { color: #4b2e1a; border-bottom: none; }
@@ -363,24 +438,24 @@ h1, h2, h3 { margin-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 .day-card p { font-size: 0.85rem; margin-top: 8px; color: #e9dccd; }
 .storage-tips { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 30px 0; }
 .tip-item { background: #efdecb; border-radius: 60px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 12px; color: #2b1b12; font-weight: bold; }
-.checklist { background: #fff7ed; border-radius: 28px; padding: 24px; margin-top: 30px; }
+.checklist { background: rgba(255, 247, 237, 0.95); border-radius: 28px; padding: 24px; margin-top: 30px; }
 .checklist h3 { color: #4b2e1a; border-left: 6px solid #b5651e; padding-left: 16px; }
 .checklist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 18px; }
 .checklist-item { display: flex; align-items: center; gap: 12px; background: #fcf3e6; padding: 10px 16px; border-radius: 50px; cursor: pointer; }
 .checklist-item span { color: #000000; font-weight: 500; }
 .progress-text { text-align: center; margin-top: 24px; font-weight: bold; background: #e9bc7d40; padding: 12px; border-radius: 60px; color: #000000; }
-.pro-tip-box { background: #fff2e2; border-radius: 48px; padding: 24px; margin-top: 35px; text-align: center; color: #000000; }
+.pro-tip-box { background: rgba(255, 242, 226, 0.95); border-radius: 48px; padding: 24px; margin-top: 35px; text-align: center; color: #000000; }
 .pro-tip-box i { font-size: 2rem; color: #b5651e; }
 .pro-tip-box p { margin-top: 12px; color: #000000; font-weight: 500; }
 
 /* Review Stars */
-.review-container { margin: 30px auto; text-align: center; background: rgba(43,27,18,0.5); padding: 25px; border-radius: 60px; }
+.review-container { margin: 30px auto; text-align: center; background: rgba(43, 27, 18, 0.7); padding: 25px; border-radius: 60px; }
 .rating-stars { display: flex; justify-content: center; gap: 18px; margin: 20px 0; }
 .rating-stars i { font-size: 52px; cursor: pointer; transition: transform 0.2s; color: #c0a080; }
 .rating-stars i:hover { transform: scale(1.2); color: #ffcd7e; }
 .rating-stars i.active { color: #ffcd7e; text-shadow: 0 0 6px #ffaa44; }
 .reset-rating { background: none; border: 1px solid #e9bc7d; color: #f7e3b2; padding: 5px 15px; border-radius: 40px; cursor: pointer; }
-.wave-bg { background: linear-gradient(to bottom, #c7a67c 50%, #6b4a35 50%); }
+.wave-bg { background: linear-gradient(to bottom, rgba(199, 166, 124, 0.85) 50%, rgba(107, 74, 53, 0.85) 50%); }
 .no-recipes-message { text-align: center; padding: 2rem; background: #f7e9d7; border-radius: 40px; margin: 2rem auto; max-width: 600px; }
 
 @media (max-width: 760px) {
@@ -571,19 +646,13 @@ document.querySelectorAll('.open-recipe-btn').forEach(btn => {
     });
 });
 
-// Clickable images - all three now use local images
+// Clickable images
 const sweetChickenLocalImg = document.querySelector('#recipe-sweet-chicken img');
-if (sweetChickenLocalImg) {
-    sweetChickenLocalImg.addEventListener('click', () => openModal('sweetChickenModal'));
-}
+if (sweetChickenLocalImg) sweetChickenLocalImg.addEventListener('click', () => openModal('sweetChickenModal'));
 const noodleLocalImg = document.querySelector('#recipe-noodles img');
-if (noodleLocalImg) {
-    noodleLocalImg.addEventListener('click', () => openModal('noodleModal'));
-}
+if (noodleLocalImg) noodleLocalImg.addEventListener('click', () => openModal('noodleModal'));
 const cookieLocalImg = document.querySelector('#recipe-cookies img');
-if (cookieLocalImg) {
-    cookieLocalImg.addEventListener('click', () => openModal('cookieModal'));
-}
+if (cookieLocalImg) cookieLocalImg.addEventListener('click', () => openModal('cookieModal'));
 
 // Close modal buttons
 document.querySelectorAll('.close-modal').forEach(btn => {
