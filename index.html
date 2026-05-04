@@ -591,23 +591,29 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 // ========== FLYING FOOD TRANSITION ANIMATION ==========
 function createFlyingFood() {
     const transitionDiv = document.getElementById('foodTransition');
-    const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲'];
-    for (let i = 0; i < 45; i++) {
+    const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲', '🥨', '🥞', '🧁', '🍦', '🍓', '🥑', '🍉'];
+    for (let i = 0; i < 50; i++) {
         const food = document.createElement('div');
         food.className = 'flying-food';
         food.innerHTML = foodIcons[Math.floor(Math.random() * foodIcons.length)];
         food.style.left = Math.random() * window.innerWidth + 'px';
         food.style.top = Math.random() * window.innerHeight + 'px';
-        food.style.setProperty('--tx', ((Math.random() - 0.5) * 450) + 'px');
-        food.style.setProperty('--ty', ((Math.random() - 0.8) * 350 - 120) + 'px');
-        food.style.setProperty('--rot', ((Math.random() - 0.5) * 900) + 'deg');
-        food.style.animationDuration = (0.8 + Math.random() * 0.5) + 's';
-        food.style.animationDelay = (Math.random() * 0.4) + 's';
+        food.style.setProperty('--tx', ((Math.random() - 0.5) * 500) + 'px');
+        food.style.setProperty('--ty', ((Math.random() - 0.8) * 400 - 100) + 'px');
+        food.style.setProperty('--rot', ((Math.random() - 0.5) * 1080) + 'deg');
+        food.style.animationDuration = (0.7 + Math.random() * 0.6) + 's';
+        food.style.animationDelay = (Math.random() * 0.5) + 's';
         transitionDiv.appendChild(food);
     }
-    setTimeout(() => { transitionDiv.style.display = 'none'; }, 1500);
+    setTimeout(() => { 
+        transitionDiv.style.display = 'none'; 
+    }, 1700);
 }
-window.addEventListener('load', function() { createFlyingFood(); });
+
+// Start flying food animation when page loads
+window.addEventListener('load', function() { 
+    createFlyingFood(); 
+});
 
 // ========== VIEW FULL RECIPE - OPEN DEDICATED PAGE ==========
 function openRecipePage(recipeId) {
