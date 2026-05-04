@@ -773,11 +773,13 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 }
 .modal-recipe-img {
     width: 100%;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
     border-radius: 24px;
     margin-bottom: 25px;
     border: 2px solid #e9bc7d;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    image-rendering: crisp-edges;
 }
 /* Modal Ingredients - Dark text on light background */
 .modal-ingredients, .modal-steps {
@@ -867,7 +869,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     .checklist h3 { font-size: 1.3rem; }
     .checklist-item span { font-size: 0.85rem; }
     .modal-body { padding: 20px; }
-    .modal-recipe-img { height: 200px; }
+    .modal-recipe-img { height: 220px; }
 }
 </style>
 </head>
@@ -1014,12 +1016,12 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     </div>
 </div>
 
-<!-- MODALS (Full Recipe Details) - ALL TEXT NOW VISIBLE -->
+<!-- MODALS (Full Recipe Details) - ALL TEXT NOW VISIBLE WITH CLEARER IMAGES -->
 <div id="sweetChickenModal" class="recipe-modal">
     <div class="modal-content">
         <div class="modal-header"><h2><i class="fas fa-drumstick-bite"></i> Sweet Chicken Recipe</h2><button class="close-modal" data-modal="sweetChickenModal">&times;</button></div>
         <div class="modal-body">
-            <img src="chicken S.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?honey+chicken'">
+            <img src="chicken S.jpg" class="modal-recipe-img" alt="Sweet Chicken Dish" style="width:100%; height:350px; object-fit:cover; border-radius:24px;" onerror="this.src='https://images.unsplash.com/photo-1604908177453-7462950a6a2d?w=800&h=400&fit=crop'">
             <div class="modal-ingredients"><h3>Ingredients</h3><p>¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (cut into bite-sized pieces)</p></div>
             <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts.</li><li><span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside.</li><li><span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).</li><li><span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).</li><li><span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Enjoy your homemade sweet chicken!</li></ol></div>
             <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Tip:</strong> For extra flavor, marinate chicken in soy sauce for 15 minutes before cooking.</div>
@@ -1032,7 +1034,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     <div class="modal-content">
         <div class="modal-header"><h2><i class="fas fa-utensil-spoon"></i> Hearty Noodle Recipe</h2><button class="close-modal" data-modal="noodleModal">&times;</button></div>
         <div class="modal-body">
-            <img src="NOodle n.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?beef+noodles+stew'">
+            <img src="NOodle n.jpg" class="modal-recipe-img" alt="Beef Noodles" style="width:100%; height:350px; object-fit:cover; border-radius:24px;" onerror="this.src='https://images.unsplash.com/photo-1563379091339-03b8f5a6c41c?w=800&h=400&fit=crop'">
             <div class="modal-ingredients"><h3>Ingredients</h3><p>1 lb steak (cubed into 1-inch pieces)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch mixed with 2 tbsp water (slurry)<br>2 bay leaves<br>1 tsp dried thyme<br>Salt and pepper to taste</p></div>
             <div class="modal-steps"><h3>Step-by-Step Instructions</h3><ol><li><span class="step-highlight">Heat a skillet over medium-high heat</span>; cook steak in batches (to avoid overcrowding) until seared and browned on all sides, about 5 minutes. Transfer seared steak to a plate.</li><li><span class="step-highlight">Melt butter</span> in the same skillet over medium heat and sauté onion until softened, 5 to 10 minutes.</li><li><span class="step-highlight">Add steak back to the skillet</span> with the onion. Pour in beef stock and season with bay leaves, thyme, salt, and pepper.</li><li><span class="step-highlight">Bring to a boil</span>; then reduce heat to low, cover, and simmer until steak is tender, about 50 minutes.</li><li><span class="step-highlight">Stir peas and cornstarch slurry</span> into the steak mixture; cook uncovered until the liquid thickens, about 10 minutes. Remove bay leaves.</li><li>Meanwhile, <span class="step-highlight">bring a large pot of lightly salted water to a boil</span>. Cook egg noodles in the boiling water, stirring occasionally, until al dente (about 5 minutes); drain well.</li><li><span class="step-highlight">Serve beef mixture over noodles</span> in deep bowls, spooning extra gravy on top. Garnish with fresh herbs if desired.</li></ol></div>
             <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Chef's Note:</strong> Low and slow simmering makes the steak incredibly tender. For deeper flavor, deglaze the skillet with a splash of red wine before adding stock.</div>
@@ -1045,7 +1047,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     <div class="modal-content">
         <div class="modal-header"><h2><i class="fas fa-cookie-bite"></i> Chocolate Chip Cookies</h2><button class="close-modal" data-modal="cookieModal">&times;</button></div>
         <div class="modal-body">
-            <img src="cookie.jpg" class="modal-recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?chocolate+cookies+batch'">
+            <img src="cookie.jpg" class="modal-recipe-img" alt="Chocolate Chip Cookies" style="width:100%; height:350px; object-fit:cover; border-radius:24px;" onerror="this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&h=400&fit=crop'">
             <div class="modal-ingredients"><h3>Ingredients</h3><p>8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups all-purpose flour<br>1 cup chocolate chips<br>Sea salt for sprinkling</p></div>
             <div class="modal-steps"><h3>Step-by-Step Brown Butter Method</h3><ol><li><span class="step-highlight">Preheat the oven to 350ºF (175°C)</span>. Line a baking sheet with parchment paper.</li><li><span class="step-highlight">In a pot, melt and carefully brown the butter</span> over medium heat. Stir continuously until it turns amber and smells nutty (about 3-5 minutes). Remove from heat.</li><li><span class="step-highlight">Let brown butter cool until warm to the touch</span> (about 5-10 minutes). Then add the white and brown sugar, mixing until fully incorporated.</li><li><span class="step-highlight">Add 1 egg at room temperature</span> and mix again until smooth and glossy.</li><li><span class="step-highlight">Add the vanilla and salt</span> onto the mixture. Then add the baking soda into the pool of vanilla before mixing it all well.</li><li><span class="step-highlight">Once the cookie mixture has a ribbon-like consistency</span>, add the flour and chocolate chips, then mix gently until just combined.</li><li><span class="step-highlight">Once there are no more specks of flour</span> around the batter, scoop into round dough balls (about 1.5 tbsp each) on the parchment-lined baking sheet, spacing 2 inches apart.</li><li><span class="step-highlight">Sprinkle with sea salt</span> and bake for 10-12 minutes, until edges are golden brown but centers are still soft.</li><li><span class="step-highlight">Let sit and cool for 8-10 minutes</span> on the baking sheet (they will continue to set). Then transfer to a wire rack and enjoy!</li></ol></div>
             <div class="modal-note"><i class="fas fa-lightbulb"></i> <strong>Baker's Tip:</strong> Brown butter adds deep caramel notes. For extra chewy cookies, chill the dough for 30 minutes before baking.</div>
@@ -1059,20 +1061,20 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 function createFlyingFood() {
     const transitionDiv = document.getElementById('foodTransition');
     const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲', '🥨', '🥞', '🧁', '🍦'];
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 50; i++) {
         const food = document.createElement('div');
         food.className = 'flying-food';
         food.innerHTML = foodIcons[Math.floor(Math.random() * foodIcons.length)];
         food.style.left = Math.random() * window.innerWidth + 'px';
         food.style.top = Math.random() * window.innerHeight + 'px';
-        food.style.setProperty('--tx', ((Math.random() - 0.5) * 450) + 'px');
-        food.style.setProperty('--ty', ((Math.random() - 0.8) * 350 - 120) + 'px');
-        food.style.setProperty('--rot', ((Math.random() - 0.5) * 900) + 'deg');
-        food.style.animationDuration = (0.8 + Math.random() * 0.5) + 's';
-        food.style.animationDelay = (Math.random() * 0.4) + 's';
+        food.style.setProperty('--tx', ((Math.random() - 0.5) * 500) + 'px');
+        food.style.setProperty('--ty', ((Math.random() - 0.8) * 400 - 100) + 'px');
+        food.style.setProperty('--rot', ((Math.random() - 0.5) * 1080) + 'deg');
+        food.style.animationDuration = (0.7 + Math.random() * 0.6) + 's';
+        food.style.animationDelay = (Math.random() * 0.5) + 's';
         transitionDiv.appendChild(food);
     }
-    setTimeout(() => { transitionDiv.style.display = 'none'; }, 1500);
+    setTimeout(() => { transitionDiv.style.display = 'none'; }, 1700);
 }
 window.addEventListener('load', function() { createFlyingFood(); });
 
