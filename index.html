@@ -516,7 +516,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     border: 1px solid #c9973a;
 }
 
-/* Footer review */
+/* Footer review - everything after email removed */
 .footer .review-container {
     background: rgba(15, 8, 4, 0.85);
     border-radius: 60px;
@@ -745,6 +745,11 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
     .recipe-save-btn, .open-recipe-btn { padding: 0.4rem 0.8rem !important; font-size: 0.7rem !important; }
     .hero::before, .hero::after { display: none; }
 }
+
+/* Footer - Ensure nothing after email */
+.footer .container > p:last-of-type {
+    margin-bottom: 0;
+}
 </style>
 </head>
 <body>
@@ -861,7 +866,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - ONLY Rating Stars and Email (everything after email removed) -->
     <section class="footer wave-bg">
         <div class="container">
             <div class="review-container">
