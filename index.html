@@ -872,12 +872,12 @@ function createFlyingFood() {
 }
 window.addEventListener('load', function() { createFlyingFood(); });
 
-// Function to open full recipe page with the correct image
+// Function to open full recipe page with the correct image - Sweet Chicken image is "chicken S.jpg"
 function openRecipePage(recipeId) {
     const recipes = {
         'sweet-chicken': { 
             name: 'Sweet Chicken Recipe', 
-            image: 'chicken%20S.jpg', 
+            image: 'chicken%20S.jpg',  // URL encoded space
             ingredients: '¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (cut into bite-sized pieces)', 
             steps: [
                 '<span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts.',
