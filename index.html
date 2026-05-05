@@ -873,16 +873,113 @@ function createFlyingFood() {
 }
 window.addEventListener('load', function() { createFlyingFood(); });
 
-// Open full recipe page
+// Open full recipe page with image
 function openRecipePage(recipeId) {
     const recipes = {
-        'sweet-chicken': { name: 'Sweet Chicken Recipe', image: 'chicken S.jpg', ingredients: '¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 chicken breasts', steps: ['Gather all ingredients', 'Whisk honey, soy sauce, and red pepper flakes', 'Heat olive oil, cook chicken until browned', 'Pour honey mixture, cook until thickened', 'Serve hot'], tip: 'Marinate chicken for extra flavor!' },
-        'noodles': { name: 'Hearty Noodle Recipe', image: 'NOodle n.jpg', ingredients: '1 lb steak<br>2 tbsp butter<br>1 onion<br>2 cups beef stock<br>4 cups noodles<br>½ cup peas', steps: ['Sear steak', 'Sauté onion', 'Add stock and simmer', 'Add peas and thicken', 'Serve over noodles'], tip: 'Low and slow makes steak tender!' },
-        'cookies': { name: 'Chocolate Chip Cookies', image: 'cookie.jpg', ingredients: '8 tbsp butter<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg<br>1 tsp vanilla<br>1¾ cups flour<br>1 cup chocolate chips', steps: ['Preheat oven to 350°F', 'Brown the butter', 'Mix with sugars', 'Add egg and vanilla', 'Add flour and chips', 'Scoop and bake 10-12 min'], tip: 'Chill dough for chewier cookies!' }
+        'sweet-chicken': {
+            name: 'Sweet Chicken Recipe',
+            image: 'chicken S.jpg',
+            ingredients: '¼ cup honey<br>2 tbsp soy sauce<br>½ tsp red pepper flakes<br>1½ tbsp olive oil<br>2 boneless chicken breasts (cut into bite-sized pieces)',
+            steps: [
+                '<span class="step-highlight">Gather all ingredients</span> – measure honey, soy sauce, red pepper flakes, olive oil, and prepare chicken breasts.',
+                '<span class="step-highlight">Whisk honey, soy sauce, and red pepper flakes</span> in a small bowl until well combined; set the sauce aside.',
+                '<span class="step-highlight">Heat olive oil</span> in a large skillet over medium heat. Add chicken pieces and cook, stirring occasionally, until lightly browned on all sides (about 5 minutes).',
+                '<span class="step-highlight">Pour the honey mixture</span> into the skillet with the chicken. Continue to cook and stir until chicken is no longer pink in the center and the sauce has thickened into a glossy glaze (about 5 more minutes).',
+                '<span class="step-highlight">Serve hot</span> immediately over rice, quinoa, or steamed vegetables. Enjoy your homemade sweet chicken!'
+            ],
+            tip: 'For extra flavor, marinate chicken in soy sauce for 15 minutes before cooking.'
+        },
+        'noodles': {
+            name: 'Hearty Noodle Recipe',
+            image: 'NOodle n.jpg',
+            ingredients: '1 lb steak (cubed into 1-inch pieces)<br>2 tbsp butter<br>1 onion (diced)<br>2 cups beef stock<br>4 cups egg noodles<br>½ cup frozen peas<br>1 tbsp cornstarch mixed with 2 tbsp water (slurry)<br>2 bay leaves<br>1 tsp dried thyme<br>Salt and pepper to taste',
+            steps: [
+                '<span class="step-highlight">Heat a skillet over medium-high heat</span>; cook steak in batches until seared and browned on all sides, about 5 minutes. Transfer to a plate.',
+                '<span class="step-highlight">Melt butter</span> in the same skillet over medium heat and sauté onion until softened, 5 to 10 minutes.',
+                '<span class="step-highlight">Add steak back to the skillet</span> with the onion. Pour in beef stock and season with bay leaves, thyme, salt, and pepper.',
+                '<span class="step-highlight">Bring to a boil</span>; then reduce heat to low, cover, and simmer until steak is tender, about 50 minutes.',
+                '<span class="step-highlight">Stir peas and cornstarch slurry</span> into the steak mixture; cook uncovered until the liquid thickens, about 10 minutes. Remove bay leaves.',
+                'Meanwhile, <span class="step-highlight">bring a large pot of lightly salted water to a boil</span>. Cook egg noodles until al dente (about 5 minutes); drain well.',
+                '<span class="step-highlight">Serve beef mixture over noodles</span> in deep bowls, spooning extra gravy on top.'
+            ],
+            tip: 'Low and slow simmering makes the steak incredibly tender. For deeper flavor, deglaze with red wine before adding stock.'
+        },
+        'cookies': {
+            name: 'Chocolate Chip Cookies',
+            image: 'cookie.jpg',
+            ingredients: '8 tbsp butter (for browning)<br>¾ cup brown sugar<br>¼ cup white sugar<br>1 egg (room temperature)<br>1 tsp vanilla extract<br>¼ tsp salt<br>½ tsp baking soda<br>1¾ cups all-purpose flour<br>1 cup chocolate chips<br>Sea salt for sprinkling',
+            steps: [
+                '<span class="step-highlight">Preheat the oven to 350ºF (175°C)</span>. Line a baking sheet with parchment paper.',
+                '<span class="step-highlight">In a pot, melt and carefully brown the butter</span> over medium heat. Stir until amber and nutty (3-5 minutes). Remove from heat.',
+                '<span class="step-highlight">Let brown butter cool until warm</span> (5-10 minutes). Then add white and brown sugar, mixing until fully incorporated.',
+                '<span class="step-highlight">Add 1 egg at room temperature</span> and mix again until smooth and glossy.',
+                '<span class="step-highlight">Add vanilla and salt</span>. Then add baking soda into the vanilla before mixing well.',
+                '<span class="step-highlight">Once mixture has a ribbon-like consistency</span>, add flour and chocolate chips, mixing gently until just combined.',
+                '<span class="step-highlight">Once no more flour specks remain</span>, scoop dough balls onto parchment-lined sheet, spacing 2 inches apart.',
+                '<span class="step-highlight">Sprinkle with sea salt</span> and bake for 10-12 minutes, until edges are golden brown but centers soft.',
+                '<span class="step-highlight">Let cool for 8-10 minutes</span> on the baking sheet, then transfer to a wire rack. Enjoy!'
+            ],
+            tip: 'Brown butter adds deep caramel notes. For extra chewy cookies, chill the dough for 30 minutes before baking.'
+        }
     };
+    
     const recipe = recipes[recipeId];
     if (!recipe) return;
-    const newPage = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${recipe.name} | Let's Eat</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Georgia',serif;background:linear-gradient(135deg,#c7a67c,#9b7a5a);min-height:100vh;padding:40px 20px}.container{max-width:900px;margin:0 auto;background:#fef8ef;border-radius:48px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:2px solid #e9bc7d}.header{background:#2b1b12;padding:25px 30px;border-bottom:3px solid #e9bc7d;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}.header h1{color:#f7e3b2;font-size:2rem}.close-btn{background:#e9bc7d;color:#2b1b12;border:none;padding:10px 24px;border-radius:40px;cursor:pointer;font-weight:bold}.close-btn:hover{background:#d6a05e}.body{padding:30px}.recipe-img{width:100%;height:350px;object-fit:cover;border-radius:28px;margin-bottom:30px;border:2px solid #e9bc7d}.section{background:#fffaf0;padding:22px;border-radius:28px;margin-top:20px;border:1px solid #e9bc7d}.section h2{border-left:6px solid #b5651e;padding-left:16px;margin-bottom:18px;color:#4b2e1a}.section p{color:#2b1b12;line-height:1.6}.steps ol{margin-left:22px;line-height:1.8}.steps li{color:#2b1b12;margin-bottom:12px}.tip{background:#e9bc7d25;padding:18px;border-radius:24px;margin-top:22px;border-left:5px solid #b5651e;color:#2b1b12}@media(max-width:650px){.recipe-img{height:220px}}</style></head><body><div class="container"><div class="header"><h1><i class="fas fa-utensils"></i> ${recipe.name}</h1><button class="close-btn" onclick="window.close()"><i class="fas fa-arrow-left"></i> Close</button></div><div class="body"><img src="${recipe.image}" class="recipe-img" onerror="this.src='https://source.unsplash.com/800x400/?food'"><div class="section"><h2><i class="fas fa-clipboard-list"></i> Ingredients</h2><p>${recipe.ingredients}</p></div><div class="section steps"><h2><i class="fas fa-cooking"></i> Instructions</h2><ol>${recipe.steps.map(s => `<li>${s}</li>`).join('')}</ol></div><div class="tip"><i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> ${recipe.tip}</div></div></div><script>document.addEventListener('keydown',e=>{if(e.key==='Escape')window.close()});<\/script></body></html>`;
+    
+    const newPage = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${recipe.name} | Let's Eat</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Georgia',serif;background:linear-gradient(135deg,#c7a67c,#9b7a5a);min-height:100vh;padding:40px 20px}
+    .container{max-width:900px;margin:0 auto;background:#fef8ef;border-radius:48px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:2px solid #e9bc7d}
+    .header{background:#2b1b12;padding:25px 30px;border-bottom:3px solid #e9bc7d;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+    .header h1{color:#f7e3b2;font-size:2rem}
+    .close-btn{background:#e9bc7d;color:#2b1b12;border:none;padding:10px 24px;border-radius:40px;cursor:pointer;font-weight:bold;transition:all 0.2s}
+    .close-btn:hover{background:#d6a05e;transform:translateY(-2px)}
+    .body{padding:30px}
+    .recipe-img{width:100%;height:350px;object-fit:cover;border-radius:28px;margin-bottom:30px;border:2px solid #e9bc7d}
+    .section{background:#fffaf0;padding:22px;border-radius:28px;margin-top:20px;border:1px solid #e9bc7d}
+    .section h2{border-left:6px solid #b5651e;padding-left:16px;margin-bottom:18px;color:#4b2e1a;font-size:1.5rem}
+    .section p{color:#2b1b12;line-height:1.6;font-size:1rem}
+    .steps ol{margin-left:22px;line-height:1.8}
+    .steps li{color:#2b1b12;margin-bottom:12px;font-size:1rem}
+    .tip{background:#e9bc7d25;padding:18px;border-radius:24px;margin-top:22px;border-left:5px solid #b5651e;color:#2b1b12}
+    .step-highlight{background:#e9bc7d80;padding:2px 8px;border-radius:20px;font-weight:700;color:#2b1b12}
+    @media(max-width:650px){.recipe-img{height:220px}.header{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><i class="fas fa-utensils"></i> ${recipe.name}</h1>
+        <button class="close-btn" onclick="window.close()"><i class="fas fa-arrow-left"></i> Close Recipe</button>
+    </div>
+    <div class="body">
+        <img src="${recipe.image}" class="recipe-img" alt="${recipe.name}" onerror="this.src='https://source.unsplash.com/800x400/?food'">
+        <div class="section">
+            <h2><i class="fas fa-clipboard-list"></i> Ingredients</h2>
+            <p>${recipe.ingredients}</p>
+        </div>
+        <div class="section steps">
+            <h2><i class="fas fa-cooking"></i> Step-by-Step Instructions</h2>
+            <ol>${recipe.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+        </div>
+        <div class="tip">
+            <i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> ${recipe.tip}
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') window.close(); });
+</script>
+</body>
+</html>`;
+    
     const blob = new Blob([newPage], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
@@ -890,7 +987,10 @@ function openRecipePage(recipeId) {
 }
 
 document.querySelectorAll('.open-recipe-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => { e.preventDefault(); openRecipePage(btn.getAttribute('data-recipe-page')); });
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openRecipePage(btn.getAttribute('data-recipe-page'));
+    });
 });
 document.querySelectorAll('.recipe img').forEach((img, i) => {
     img.addEventListener('click', () => openRecipePage(['sweet-chicken','noodles','cookies'][i]));
