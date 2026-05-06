@@ -37,6 +37,7 @@ body::before {
     z-index: -1;
 }
 
+/* ========== FLYING FOOD TRANSITION ========== */
 .food-transition {
     position: fixed;
     top: 0;
@@ -74,6 +75,7 @@ body::before {
     }
 }
 
+/* Staggered fade-in for main content */
 .main-content, .saved-page {
     animation: contentFadeIn 0.6s ease-out 0.5s backwards;
 }
@@ -82,6 +84,7 @@ body::before {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Staggered fade-in for recipe cards */
 .recipe-card {
     animation: cardFadeIn 0.5s ease-out backwards;
 }
@@ -93,6 +96,23 @@ body::before {
     to { opacity: 1; transform: translateX(0); }
 }
 
+/* Hover effects */
+.recipe-save-btn, .open-recipe-btn, .icon-btn, .back-to-home, .view-recipe-btn, .remove-saved-btn {
+    transition: all 0.3s ease;
+}
+.recipe-save-btn:hover, .open-recipe-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.recipe img {
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+.recipe img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+}
+
+/* ========== COOL ANIMATED TITLE ========== */
 .hero {
     position: relative;
     overflow: hidden;
@@ -187,6 +207,7 @@ body::before {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ========== CRYSTAL CLEAR BUTTON STYLES ========== */
 .recipe-save-btn, .open-recipe-btn {
     background: #e9bc7d !important;
     color: #2b1b12 !important;
@@ -218,6 +239,7 @@ body::before {
     border-color: #8b3c1c !important;
 }
 
+/* Button container */
 .recipe-content > div:last-child {
     display: flex;
     flex-wrap: wrap;
@@ -225,12 +247,14 @@ body::before {
     align-items: center;
 }
 
+/* ========== ALL TEXT CRYSTAL CLEAR & VISIBLE ========== */
 body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li, .day-card p, .progress-text, .saved-recipe-info p, .empty-saved-page p, .result-title, .no-results {
     color: #ffefcf !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     font-weight: 500;
 }
 
+/* Recipe card headings */
 .recipe-card h2 {
     color: #fff5e6 !important;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
@@ -238,23 +262,33 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     font-weight: 700;
 }
 
+/* Ingredients and steps headings */
 .ingredients h3, .detailed-steps h3 {
     color: #fff5e6 !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     font-weight: 700;
 }
 
+/* Meal prep section */
 .meal-prep-section h2, .meal-prep-section h3 {
     color: #fff5e6 !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     font-weight: 700;
 }
 
+/* Footer text */
+.footer h2, .footer p, .rating-feedback, .review-container .review-label {
+    color: #ffefcf !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Saved recipes text */
 .saved-header h1, .saved-recipe-info h3, .saved-recipe-info p {
     color: #ffefcf !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* Brand text */
 .brand span {
     background: linear-gradient(135deg, #f7e3b2, #e9bc7d);
     background-clip: text;
@@ -267,6 +301,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
 }
 
+/* ========== SEARCH BAR - CRYSTAL CLEAR & NOT BLURRY ========== */
 .search-wrapper {
     flex: 1;
     max-width: 500px;
@@ -297,6 +332,8 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     color: #2b1b12 !important;
     text-shadow: none;
     font-weight: 500;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 .search-input:focus {
     border-color: #c9973a !important;
@@ -324,6 +361,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     color: #5e3a23;
 }
 
+/* Search dropdown - clear and visible */
 .search-results-dropdown {
     position: absolute;
     top: calc(100% + 8px);
@@ -367,6 +405,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     color: #ffefcf !important;
 }
 
+/* Header actions */
 .header-actions { display: flex; gap: 1rem; align-items: center; }
 .icon-btn {
     background: rgba(255, 245, 225, 0.2);
@@ -391,6 +430,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     color: #2b1b12;
 }
 
+/* Header background - no blur on search */
 .main-header {
     background-color: rgba(20, 12, 6, 0.95);
     padding: 1rem 2rem;
@@ -401,6 +441,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     border-bottom: 3px solid #e9bc7d;
 }
 
+/* Recipe card backgrounds */
 .recipe-card .container .recipe-content .ingredients,
 .recipe-card .container .recipe-content .detailed-steps {
     background: rgba(30, 20, 12, 0.85);
@@ -420,6 +461,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     background: linear-gradient(to bottom, rgba(20, 12, 6, 0.88) 50%, rgba(15, 8, 4, 0.92) 50%);
 }
 
+/* Checklist */
 .checklist {
     background: rgba(255, 247, 237, 0.95);
     border-radius: 28px;
@@ -482,6 +524,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     border: 1px solid #c9973a;
 }
 
+/* Footer Review */
 .footer .review-container {
     background: rgba(15, 8, 4, 0.85);
     border-radius: 60px;
@@ -530,6 +573,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     font-size: 0.9rem;
 }
 
+/* Back to home */
 .back-to-home {
     background: #e9bc7d !important;
     color: #2b1b12 !important;
@@ -544,6 +588,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     margin-top: 15px;
     transition: all 0.3s ease;
     font-weight: 800;
+    text-shadow: none;
 }
 .back-to-home:hover {
     background: #d6a05e !important;
@@ -561,6 +606,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     margin-right: 10px;
     transition: all 0.2s ease;
     font-weight: 800;
+    text-shadow: none;
 }
 .view-recipe-btn:hover {
     background: #d6a05e !important;
@@ -579,6 +625,7 @@ body, p, h2, h3, h4, li, .step-highlight, .note-box, .prep-card p, .prep-card li
     transform: translateY(-2px);
 }
 
+/* Prep card */
 .prep-card {
     background: rgba(30, 20, 12, 0.9);
     border: 1px solid rgba(233, 188, 125, 0.3);
@@ -719,6 +766,7 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 </head>
 <body>
 
+<!-- FLYING FOOD TRANSITION OVERLAY -->
 <div id="foodTransition" class="food-transition"></div>
 
 <header class="main-header">
@@ -852,26 +900,48 @@ section { padding: 60px 20px; border-bottom: 2px solid rgba(0,0,0,0.1); }
 </div>
 
 <script>
+// ========== FLYING FOOD TRANSITION ANIMATION ==========
 function createFlyingFood() {
     const transitionDiv = document.getElementById('foodTransition');
-    const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲', '🍎', '🍒'];
+    const foodIcons = ['🍕', '🍔', '🍟', '🌮', '🍜', '🍣', '🍰', '🍪', '🍩', '🥗', '🍗', '🥘', '🍝', '🍛', '🥟', '🍲', '🥨', '🥞', '🧁', '🍦', '🍎', '🍒', '🍓', '🥑'];
+    
     for (let i = 0; i < 50; i++) {
         const food = document.createElement('div');
         food.className = 'flying-food';
         food.innerHTML = foodIcons[Math.floor(Math.random() * foodIcons.length)];
+        
+        // Random starting position
         food.style.left = Math.random() * window.innerWidth + 'px';
         food.style.top = Math.random() * window.innerHeight + 'px';
-        food.style.setProperty('--tx', ((Math.random() - 0.5) * 500) + 'px');
-        food.style.setProperty('--ty', ((Math.random() - 0.8) * 400 - 100) + 'px');
-        food.style.setProperty('--rot', ((Math.random() - 0.5) * 1080) + 'deg');
+        
+        // Random direction and rotation
+        const tx = (Math.random() - 0.5) * 500;
+        const ty = (Math.random() - 0.8) * 400 - 100;
+        const rot = (Math.random() - 0.5) * 1080;
+        
+        food.style.setProperty('--tx', tx + 'px');
+        food.style.setProperty('--ty', ty + 'px');
+        food.style.setProperty('--rot', rot + 'deg');
+        
+        // Random duration between 0.7 and 1.3 seconds
         food.style.animationDuration = (0.7 + Math.random() * 0.6) + 's';
         food.style.animationDelay = (Math.random() * 0.5) + 's';
+        
         transitionDiv.appendChild(food);
     }
-    setTimeout(() => { transitionDiv.style.display = 'none'; }, 1700);
+    
+    // Remove the transition overlay after animation completes
+    setTimeout(() => { 
+        transitionDiv.style.display = 'none'; 
+    }, 1700);
 }
-window.addEventListener('load', function() { createFlyingFood(); });
 
+// Start flying food animation when page loads
+window.addEventListener('load', function() { 
+    createFlyingFood(); 
+});
+
+// ========== VIEW FULL RECIPE - OPEN DEDICATED PAGE ==========
 function openRecipePage(recipeId) {
     const recipes = {
         'sweet-chicken': { 
@@ -923,10 +993,7 @@ function openRecipePage(recipeId) {
     const recipe = recipes[recipeId];
     if (!recipe) return;
     
-    // Use proper URL encoding for image paths
-    const encodedImage = encodeURI(recipe.image);
-    
-    const newPage = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${recipe.name} | Let's Eat</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Georgia',serif;background:linear-gradient(135deg,#c7a67c,#9b7a5a);min-height:100vh;padding:40px 20px}.container{max-width:900px;margin:0 auto;background:#fef8ef;border-radius:48px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:2px solid #e9bc7d}.header{background:#2b1b12;padding:25px 30px;border-bottom:3px solid #e9bc7d;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}.header h1{color:#f7e3b2;font-size:2rem}.close-btn{background:#e9bc7d;color:#2b1b12;border:none;padding:10px 24px;border-radius:40px;cursor:pointer;font-weight:bold;transition:all 0.2s}.close-btn:hover{background:#d6a05e;transform:translateY(-2px)}.body{padding:30px}.recipe-img{width:100%;height:350px;object-fit:cover;border-radius:28px;margin-bottom:30px;border:2px solid #e9bc7d}.section{background:#fffaf0;padding:22px;border-radius:28px;margin-top:20px;border:1px solid #e9bc7d}.section h2{border-left:6px solid #b5651e;padding-left:16px;margin-bottom:18px;color:#4b2e1a;font-size:1.5rem}.section p{color:#2b1b12;line-height:1.6;font-size:1rem}.steps ol{margin-left:22px;line-height:1.8}.steps li{color:#2b1b12;margin-bottom:12px;font-size:1rem}.tip{background:#e9bc7d25;padding:18px;border-radius:24px;margin-top:22px;border-left:5px solid #b5651e;color:#2b1b12}.step-highlight{background:#e9bc7d80;padding:2px 8px;border-radius:20px;font-weight:700;color:#2b1b12}@media(max-width:650px){.recipe-img{height:220px}.header{flex-direction:column;text-align:center}}</style></head><body><div class="container"><div class="header"><h1><i class="fas fa-utensils"></i> ${recipe.name}</h1><button class="close-btn" onclick="window.close()"><i class="fas fa-arrow-left"></i> Close Recipe</button></div><div class="body"><img src="${encodedImage}" class="recipe-img" alt="${recipe.name}" onerror="this.src='https://source.unsplash.com/800x400/?food'"><div class="section"><h2><i class="fas fa-clipboard-list"></i> Ingredients</h2><p>${recipe.ingredients}</p></div><div class="section steps"><h2><i class="fas fa-cooking"></i> Step-by-Step Instructions</h2><ol>${recipe.steps.map(step => `<li>${step}</li>`).join('')}</ol></div><div class="tip"><i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> ${recipe.tip}</div></div></div><script>document.addEventListener('keydown',function(e){if(e.key==='Escape')window.close()});<\/script></body></html>`;
+    const newPage = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${recipe.name} | Let's Eat</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Georgia',serif;background:linear-gradient(135deg,#c7a67c,#9b7a5a);min-height:100vh;padding:40px 20px}.container{max-width:900px;margin:0 auto;background:#fef8ef;border-radius:48px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.3);border:2px solid #e9bc7d}.header{background:#2b1b12;padding:25px 30px;border-bottom:3px solid #e9bc7d;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}.header h1{color:#f7e3b2;font-size:2rem}.close-btn{background:#e9bc7d;color:#2b1b12;border:none;padding:10px 24px;border-radius:40px;cursor:pointer;font-weight:bold;transition:all 0.2s}.close-btn:hover{background:#d6a05e;transform:translateY(-2px)}.body{padding:30px}.recipe-img{width:100%;height:350px;object-fit:cover;border-radius:28px;margin-bottom:30px;border:2px solid #e9bc7d}.section{background:#fffaf0;padding:22px;border-radius:28px;margin-top:20px;border:1px solid #e9bc7d}.section h2{border-left:6px solid #b5651e;padding-left:16px;margin-bottom:18px;color:#4b2e1a;font-size:1.5rem}.section p{color:#2b1b12;line-height:1.6;font-size:1rem}.steps ol{margin-left:22px;line-height:1.8}.steps li{color:#2b1b12;margin-bottom:12px;font-size:1rem}.tip{background:#e9bc7d25;padding:18px;border-radius:24px;margin-top:22px;border-left:5px solid #b5651e;color:#2b1b12}.step-highlight{background:#e9bc7d80;padding:2px 8px;border-radius:20px;font-weight:700;color:#2b1b12}@media(max-width:650px){.recipe-img{height:220px}.header{flex-direction:column;text-align:center}}</style></head><body><div class="container"><div class="header"><h1><i class="fas fa-utensils"></i> ${recipe.name}</h1><button class="close-btn" onclick="window.close()"><i class="fas fa-arrow-left"></i> Close Recipe</button></div><div class="body"><img src="${recipe.image}" class="recipe-img" alt="${recipe.name}" onerror="this.src='https://images.unsplash.com/800x400/?food'"><div class="section"><h2><i class="fas fa-clipboard-list"></i> Ingredients</h2><p>${recipe.ingredients}</p></div><div class="section steps"><h2><i class="fas fa-cooking"></i> Step-by-Step Instructions</h2><ol>${recipe.steps.map(step => `<li>${step}</li>`).join('')}</ol></div><div class="tip"><i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> ${recipe.tip}</div></div></div><script>document.addEventListener('keydown',function(e){if(e.key==='Escape')window.close()});<\/script></body></html>`;
     const blob = new Blob([newPage], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
@@ -940,6 +1007,7 @@ document.querySelectorAll('.recipe img').forEach((img, i) => {
     img.addEventListener('click', () => openRecipePage(['sweet-chicken','noodles','cookies'][i]));
 });
 
+// ========== SAVE RECIPE FUNCTIONALITY ==========
 let savedRecipes = JSON.parse(localStorage.getItem('letsEat_savedRecipes')) || [];
 
 function updateSaveButtons() {
@@ -1018,6 +1086,7 @@ document.getElementById('savedPageBtn')?.addEventListener('click', showSavedPage
 document.getElementById('backToHomeBtn')?.addEventListener('click', showHomePage);
 document.getElementById('homeBtn')?.addEventListener('click', showHomePage);
 
+// Heart button
 (function() {
     const heart = document.getElementById('heartBtn');
     let active = localStorage.getItem('letsEat_heartActive') === 'true';
@@ -1026,6 +1095,7 @@ document.getElementById('homeBtn')?.addEventListener('click', showHomePage);
     heart.addEventListener('click', () => { active = !active; localStorage.setItem('letsEat_heartActive', active); update(); alert(active ? '❤️ You love this site!' : '💔 Heart removed'); });
 })();
 
+// Search functionality
 (function() {
     const input = document.getElementById('headerSearchInput'), clear = document.getElementById('searchClearBtn'), dropdown = document.getElementById('searchDropdown'), sections = document.querySelectorAll('.recipe-card');
     function getMeta() { return Array.from(sections).map(s => ({ id: s.id, name: s.querySelector('h2')?.innerText || '', text: (s.querySelector('.detailed-steps')?.innerText || '').toLowerCase() })); }
@@ -1040,11 +1110,13 @@ document.getElementById('homeBtn')?.addEventListener('click', showHomePage);
     performSearch('');
 })();
 
+// Checklist functionality
 const items = document.querySelectorAll('#mealPrepChecklist .checklist-item');
 const prog = document.getElementById('prepProgressMsg');
 function updateProgress() { let total = items.length, comp = 0; items.forEach(i => { if (i.querySelector('i')?.classList.contains('fa-check-square')) comp++; }); prog.innerHTML = `✅ ${comp} / ${total} tasks completed — click each task to track your prep!`; }
 items.forEach(i => { i.style.cursor = 'pointer'; i.addEventListener('click', () => { let icon = i.querySelector('i'); if (icon.classList.contains('fa-square')) { icon.classList.remove('fa-square'); icon.classList.add('fa-check-square'); } else { icon.classList.remove('fa-check-square'); icon.classList.add('fa-square'); } updateProgress(); }); }); updateProgress();
 
+// Rating stars functionality
 (function() {
     const stars = document.querySelectorAll('#clickableStars i');
     const feedback = document.getElementById('starFeedback');
